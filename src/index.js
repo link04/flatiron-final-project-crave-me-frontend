@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
 
 import userReducer from './reducers/userReducer.js';
+import genderReducer from './reducers/genderReducer.js';
+
 
 
 import App from './App';
@@ -15,7 +17,8 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 const rootReducer = combineReducers({
-  userReducer
+  userReducer,
+  genderReducer
 })
 
 const store  = createStore(rootReducer, applyMiddleware(thunk));

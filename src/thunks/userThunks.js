@@ -16,3 +16,10 @@ export const postUser = (user) => (dispatch) => {
   .then(response => response.json())
   .then(parsedResponse => dispatch(createUser(parsedResponse)))
 }
+
+export const getUser = (user_id) => (dispatch) => {
+
+  return fetch(API_ROOT+"users/"+user_id)
+  .then(response => response.json())
+  .then(parsedResponse => dispatch(createUser(parsedResponse)))
+}
