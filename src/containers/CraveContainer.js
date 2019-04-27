@@ -4,14 +4,8 @@ import {connect} from 'react-redux';
 
 class CraveContainer extends React.Component {
 
-  userLogged = () => {
-    if(this.props.userId === undefined) {
-      this.props.history.push('/login');
-    };
-  }
-
   render(){
-      this.userLogged();
+
     return(
       <div>
         Your Crave
@@ -21,7 +15,7 @@ class CraveContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {userId : state.userReducer.user.id}
+  return {user : state.userReducer.user}
 }
 
 export default withRouter(connect(mapStateToProps)(CraveContainer)) ;

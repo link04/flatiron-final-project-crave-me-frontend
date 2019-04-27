@@ -1,4 +1,4 @@
-import { API_ROOT,HEADERS } from '../constants';
+import { API_ROOT } from '../constants';
 import { loadGenders } from '../actions/genderActions';
 
 export const getGenders = () => (dispatch) => {

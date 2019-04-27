@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { removeUser } from '../actions/userActions';
 
-import { Link, Redirect, withRouter} from 'react-router-dom';
+import { Redirect, withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Collapse,
@@ -15,8 +16,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-
-
 
 class NavBar extends React.Component {
 
@@ -34,9 +33,11 @@ class NavBar extends React.Component {
       });
     }
 
-    handleClick = () =>{
+    handleClickLogout = () =>{
       if (window.confirm("Do you really want to log out?")) {
-        this.props.handleLogout();
+        delete localStorage.token;
+        this.props.userLogOut();
+        this.props.history.push('/login');
       }
     }
 
@@ -45,17 +46,16 @@ class NavBar extends React.Component {
     }
 
     render() {
-      console.log(this.props);
       return (
         <div>
           <Navbar color="ligth" light expand="md">
-            <NavbarBrand className="link" onClick={() => this.handleClickedLink('/conversationsList')} >
+            <NavbarBrand className="link" onClick={() => this.handleClickedLink('/cravecontainer')} >
                 CraveMe
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-              { Object.keys(this.props.user).length > 0 ?
+              { Object.keys(this.props.user).length > 0 && !this.props.user.errors ?
                 <>
                 <NavItem>
                   <NavLink className="link" onClick={() => this.handleClickedLink('/conversationsList')} >
@@ -64,17 +64,17 @@ class NavBar extends React.Component {
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle className="link" nav caret>
-                    {this.props.user.name}
+                    {this.props.user.full_name}
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem  className="link"  >
-                    <NavLink onClick={() => this.handleClickedLink('/home')} >
-                        Profile??
+                    <NavLink onClick={() => this.handleClickedLink('/')} >
+                        Profile
                     </NavLink>
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem style={{backgroundColor: 'red', color:'white'}}  >
-                      <NavItem onClick={this.handleClick}>
+                      <NavItem onClick={this.handleClickLogout}>
                         Log Out
                       </NavItem>
                     </DropdownItem>
@@ -104,12 +104,14 @@ class NavBar extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.userReducer.user
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  userLogOut: () => dispatch(removeUser())
+})
 
-
-export default withRouter(connect(mapStateToProps)(NavBar));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));

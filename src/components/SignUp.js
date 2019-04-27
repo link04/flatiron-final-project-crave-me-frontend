@@ -1,10 +1,10 @@
 import React from 'react';
-import { postUser } from '../thunks/userThunks';
-import { getUser } from '../thunks/userThunks';
+import { connect } from 'react-redux';
+import { Link, withRouter} from 'react-router-dom';
+
+import { postUser, getUser } from '../thunks/userThunks';
 import { getGenders } from '../thunks/genderThunks';
 import { loadingManager } from '../actions/userActions';
-
-import { connect } from 'react-redux';
 
 class SignUp extends React.Component {
 
@@ -19,13 +19,14 @@ class SignUp extends React.Component {
     image:null,
     'interested_genders[]':[]
   }
+  componentDidUpdate(prevProps) {
+    if(this.props.user.email !== prevProps.email){
+      this.props.history.push("/cravecontainer")
+    }
+  }
 
   componentDidMount(){
     this.props.getGenders();
-
-    // this.props.loadingManager();
-    // this.props.getUser(2);
-    // console.log(this.props.user);
   }
 
   handleChange = event => {
@@ -45,9 +46,7 @@ class SignUp extends React.Component {
     }
     this.setState({
       'interested_genders[]': [...interestedGendersCopy]
-    }
-    , () => console.log(this.state['interested_genders[]']));
-
+    });
   }
 
 
@@ -58,31 +57,30 @@ class SignUp extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.loadingManager();
-
     if(this.state['interested_genders[]'].length > 0)
       {
         let stateCopy = {...this.state};
         stateCopy.gender_id = parseInt(this.state.gender_id, 10);
         this.props.postUser(stateCopy);
-      } else {
-
       }
-
   }
 
-  checkForErrors = () => {
+  checkForErrors = (title,inputName) => {
     let errors;
     if (this.props.user !== undefined && this.props.user.errors){
-       errors = this.props.user.errors.map((error, index) => {
-        return <li key={index}>{error}</li>;
-      })
+
+      if(this.props.user.errors[inputName] !== undefined){
+        console.log(this.props.user.errors[inputName]);
+
+        errors = this.props.user.errors[inputName].map((error, index) => {
+         return <li key={index}>{title} {error}</li>;
+       })
+      }
     }
     return errors;
   }
 
-
   render(){
-
     const genders = this.props.genders.map(gender => {
       return (<option key={gender.id} value={gender.id} >{gender.name}</option>)
     })
@@ -90,7 +88,7 @@ class SignUp extends React.Component {
     const interestedGenders = this.props.genders.map(gender => {
       return (<li key={'interest-'+ gender.id+''}>
         <label key={'interest-'+ gender.id+''} htmlFor={gender.name + "-interest"}>
-          <input key={'interest-'+ gender.id+''}  onChange={this.handleInterestedGendersChange} id={gender.name + "-interest"} value={gender.id} name="interested_genders" type="checkbox"/>
+          <input key={'interest-'+ gender.id+''}  onChange={ () => this.handleInterestedGendersChange()} id={gender.name + "-interest"} value={gender.id} name="interested_genders" type="checkbox"/>
           {gender.name}
         </label>
       </li>)
@@ -120,67 +118,28 @@ class SignUp extends React.Component {
                 :
                 null
               }
-
-
           </div>
 
           <p><label htmlFor="email">Email Address</label> <input required onChange={this.handleChange} name="email" value={this.state.email} placeholder="name@email.com" type="email"/></p>
+            <ul>
+              {this.checkForErrors('Email','email')}
+            </ul>
           <p><label htmlFor="image">Profile picture</label><input onChange={this.handleFileUploader} type='file'  name='image' required accept="image/png, image/jpeg" /></p>
           <p><label htmlFor="date_of_birth">Birth Date</label><input required onChange={this.handleChange} name="date_of_birth" type="date"  value={this.state.date_of_birth} /> </p>
+            <ul>
+              {this.checkForErrors('Age','age')}
+            </ul>
           <p><label htmlFor="password">Password</label> <input required onChange={this.handleChange} name="password" value={this.state.password} placeholder="Type your Password" type="password"/></p>
+            <ul>
+              {this.checkForErrors('Password','password')}
+            </ul>
           <p><label htmlFor="password_confirmation">Password Confirmation</label> <input required onChange={this.handleChange} value={this.state.password_confirmation} name="password_confirmation" placeholder="Password Confirmation" type="password"/></p>
-          <input type="submit" />
-          <ul>
-            {this.checkForErrors()}
-          </ul>
+            <ul>
+              {this.checkForErrors('Password Confirmation','password_confirmation')}
+            </ul>
+        <input type="submit" value="Start Craving"/>
+        <p>Already a member?<Link to={`/login`} className="active"> Log In</Link></p>
         </fieldset>
-
-
-
-
-      {/*
-
-       <p><a href="#top">[Top]</a></p>
-        <fieldset id="forms__select">
-          <legend>Select menus</legend>
-          <p><label for="select">Select</label> <select id="select">
-              <optgroup label="Option Group">
-                <option>
-                  Option One
-                </option>
-                <option>
-                  Option Two
-                </option>
-                <option>
-                  Option Three
-                </option>
-              </optgroup>
-          </select></p>
-        </fieldset>
-        <p><a href="#top">[Top]</a></p>
-        <fieldset id="forms__checkbox">
-          <legend>Checkboxes</legend>
-          <ul>
-            <li><label for="checkbox1"><input onChange={this.handleChange} checked="checked" id="checkbox1" name="checkbox" type="checkbox" /> Choice A</label></li>
-            <li><label for="checkbox2"><input onChange={this.handleChange} id="checkbox2" name="checkbox" type="checkbox"/> Choice B</label></li>
-            <li><label for="checkbox3"><input onChange={this.handleChange} id="checkbox3" name="checkbox" type="checkbox"/> Choice C</label></li>
-          </ul>
-        </fieldset>
-        <p><a href="#top">[Top]</a></p>
-        <fieldset id="forms__textareas">
-          <legend>Textareas</legend>
-          <p><label for="textarea">Textarea</label>
-            <textarea cols="48" id="textarea" placeholder="Enter your message here" rows="8"></textarea></p>
-        </fieldset>
-        <p><a href="#top">[Top]</a></p>
-        <fieldset id="forms__html5">
-          <fieldset id="forms__action">
-            <legend>Action buttons</legend>
-            <p><input onChange={this.handleChange} type="submit" value="input type=submit"/> <input onChange={this.handleChange} type="button" value="input type=button"/> <input onChange={this.handleChange} type="reset" value="input type=reset"/> <input onChange={this.handleChange} disabled="" type="submit" value="input disabled"/></p>
-            <p><button type="submit">&lt;button type=submit&gt;</button> <button type="button">&lt;button type=button&gt;</button> <button type="reset">&lt;button type=reset&gt;</button> <button disabled="" type="button">&lt;button disabled&gt;</button></p>
-          </fieldset>
-          <p><a href="#top">[Top]</a></p>
-        </fieldset> */}
       </form>
     )
   };
@@ -198,4 +157,4 @@ const mapDispatchToProps = dispatch => ({
   getUser: (user_id) => dispatch(getUser(user_id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp));
