@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter} from 'react-router-dom';
+import { Link, withRouter, Redirect} from 'react-router-dom';
 
 import { postUser, getUser } from '../thunks/userThunks';
 import { getGenders } from '../thunks/genderThunks';
@@ -18,11 +18,6 @@ class SignUp extends React.Component {
     date_of_birth:'',
     image:null,
     'interested_genders[]':[]
-  }
-  componentDidUpdate(prevProps) {
-    if(this.props.user.email !== prevProps.email){
-      this.props.history.push("/cravecontainer")
-    }
   }
 
   componentDidMount(){
@@ -48,7 +43,6 @@ class SignUp extends React.Component {
       'interested_genders[]': [...interestedGendersCopy]
     });
   }
-
 
   handleFileUploader = (e) => {
    this.setState({image: e.target.files[0]})
@@ -96,6 +90,11 @@ class SignUp extends React.Component {
 
     return(
       <form onSubmit={this.handleSubmit} >
+        { this.props.user.email ?
+          <Redirect to='/'  />
+           :
+           null
+        }
         <fieldset id="forms__input">
           <legend>Welcome To CraveMe</legend>
           <h4>Sign Up</h4>

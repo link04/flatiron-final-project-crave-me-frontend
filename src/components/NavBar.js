@@ -34,7 +34,7 @@ class NavBar extends React.Component {
     }
 
     handleClickLogout = () =>{
-      if (window.confirm("Do you really want to log out?")) {
+      if (window.confirm("Are you sure?")) {
         delete localStorage.token;
         this.props.userLogOut();
         this.props.history.push('/login');
@@ -48,7 +48,7 @@ class NavBar extends React.Component {
     render() {
       return (
         <div>
-          <Navbar color="ligth" light expand="md">
+          <Navbar style={{backgroundColor:"#dce4eb"}} light expand="md">
             <NavbarBrand className="link" onClick={() => this.handleClickedLink('/cravecontainer')} >
                 CraveMe
             </NavbarBrand>
@@ -57,11 +57,6 @@ class NavBar extends React.Component {
               <Nav className="ml-auto" navbar>
               { Object.keys(this.props.user).length > 0 && !this.props.user.errors ?
                 <>
-                <NavItem>
-                  <NavLink className="link" onClick={() => this.handleClickedLink('/conversationsList')} >
-                      Conversation Channels
-                  </NavLink>
-                </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle className="link" nav caret>
                     {this.props.user.full_name}
@@ -73,7 +68,7 @@ class NavBar extends React.Component {
                     </NavLink>
                     </DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem style={{backgroundColor: 'red', color:'white'}}  >
+                    <DropdownItem style={{backgroundColor: '#a00d1e', color:'white'}}  >
                       <NavItem onClick={this.handleClickLogout}>
                         Log Out
                       </NavItem>

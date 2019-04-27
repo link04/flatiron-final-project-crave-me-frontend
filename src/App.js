@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
 
-import CraveContainer from './containers/CraveContainer';
+import NavBar from './components/NavBar';
+import UserOptionsTab from './components/UserOptionsTab';
 
 import { getUser } from './thunks/userThunks'
 import { loadingManager } from './actions/userActions';
 
 class App extends React.Component {
-
 
   componentDidMount(){
     const location = this.props.history.location.pathname;
@@ -22,7 +21,7 @@ class App extends React.Component {
     if(token){
       this.props.loadingManager();
       this.props.getUser(token)
-    }  if (location !== '/login' && location !== '/signup'){
+    } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
     }
   }
@@ -31,30 +30,24 @@ class App extends React.Component {
     return (
       <div>
       <NavBar />
-      <div className="container" >
+
         {
-           <Switch>
-           <Route
-           exact
-           path="/signup"
-           render={() => <SignUp />}
-           />
-           <Route
-           exact
-           path="/cravecontainer"
-           render={() => <CraveContainer />}
-           />
-           <Route
-           exact
-           path="/login"
-           render={() => <LogIn />}
-           />
-         <Route path="/" render={() => <LogIn />} />
-           </Switch>
+          <Switch>
+               <Route
+               exact
+               path="/signup"
+               render={() => <SignUp />}
+               />
+               <Route
+               exact
+               path="/login"
+               render={() => <LogIn />}
+               />
+            <Route exact path="/" render={() => <UserOptionsTab />} />
+          </Switch>
          }
-        <div className={this.props.loading ? 'modal' : 'hidden-modal'}></div>
+        <div hidden={this.props.loading }></div>
       </div>
-    </div>
 
     );
   }

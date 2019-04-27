@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter, Link, Redirect} from 'react-router-dom';
 
 import { loginUser, getUser } from '../thunks/userThunks';
 import { loadingManager } from '../actions/userActions';
@@ -10,12 +10,6 @@ class LogIn extends React.Component {
   state = {
     email:'',
     password:'',
-  }
-
-  componentDidUpdate(prevProps) {
-    if(this.props.user.email !== prevProps.email){
-      this.props.history.push("/cravecontainer")
-    }
   }
 
   handleChange = event => {
@@ -42,16 +36,17 @@ class LogIn extends React.Component {
     return errors;
   }
 
-  userLogged = () => {
-    if(!!localStorage.token){
-      this.props.history.push("/cravecontainer")
-    }
-  }
 
   render(){
 
     return(
+
       <form onSubmit={this.handleSubmit} >
+          { this.props.user.email ?
+             <Redirect to='/'  />
+             :
+             null
+          }
         <fieldset>
           <legend>Welcome To CraveMe</legend>
           <h4>Log In</h4>

@@ -31,4 +31,26 @@
 .hidden-modal {
   display: none;
 }
-/*  NAVBAR CSS */
+/* Tab styles */
+
+/* Will center the blocks displayed when the tabs is clicked.  */
+.tab-childs {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: solid;
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* Changing background color for active tabs */
+
+.nav-tabs .nav-link.active{
+  background-color: #d69293;
+  color:white;
+}
+
+ul li.nav-item  {
+  cursor: pointer;
+}
