@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
@@ -69,7 +69,7 @@ class UserOptionsTab  extends React.Component{
               </Col>
           </TabPane>
           <TabPane tabId="3">
-              <Col className="tab-childs" sm="8">
+              <Col className="tab-childs " sm="8">
                 <CraveContainer />
               </Col>
           </TabPane>

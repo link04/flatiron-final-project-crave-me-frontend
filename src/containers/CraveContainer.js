@@ -1,21 +1,40 @@
 import React from 'react';
 import {Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import CraveForm from '../components/CraveForm'
+import CraveCard from '../components/CraveCard'
+import { setCrave } from '../actions/craveActions'
+
 
 class CraveContainer extends React.Component {
 
-  render(){
+  componentDidMount(){
+    this.props.getCrave(this.props.user.last_crave)
+  }
 
+  render(){
+    console.log(  this.props);
     return(
       <div>
-        craves
+        {this.props.crave === undefined || this.props.crave === null   ?
+          <CraveForm />
+          :
+          <CraveCard />
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return {user : state.userReducer.user}
+  return {
+    user: state.userReducer.user,
+    crave: state.craveReducer.crave
+  }
 }
 
-export default withRouter(connect(mapStateToProps)(CraveContainer)) ;
+const mapDispatchToProps = dispatch => ({
+  getCrave: (userCrave) => dispatch(setCrave(userCrave))
+})
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(CraveContainer)) ;

@@ -1,5 +1,6 @@
-
-
+body {
+  font-family: 'Source Serif Pro', serif;
+}
 
 .modal {
     display:    none;
@@ -53,4 +54,9 @@
 
 ul li.nav-item  {
   cursor: pointer;
+}
+/*  Select style for size */
+.select{
+    height:100px;
+    overflow:scroll;
 }

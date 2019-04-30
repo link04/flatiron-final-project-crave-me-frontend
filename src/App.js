@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row } from 'reactstrap';
 
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
@@ -29,7 +30,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-      <NavBar />
+         <NavBar />
 
         {
           <Switch>
