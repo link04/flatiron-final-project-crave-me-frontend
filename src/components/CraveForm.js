@@ -1,16 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import { getMenuChoices } from '../thunks/menuChoiceThunks';
 // import { getMenuChoices } from '../actions/menuChoiceActions';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { postCrave } from '../thunks/craveThunks';
 
 class CraveForm extends React.Component {
-
-  componentDidMount(){
-    this.props.loadMenuChoices();
-  }
 
   state = {
     user_id: 0,
@@ -42,6 +37,8 @@ class CraveForm extends React.Component {
   }
 
   render(){
+
+
     return(
       <div className="text-center p-4">
         <h5>Create Crave</h5>
@@ -77,7 +74,6 @@ class CraveForm extends React.Component {
       </div>
     );
   };
-
 }
 
   const mapStateToProps = state => {
@@ -89,8 +85,7 @@ class CraveForm extends React.Component {
   }
 
   const mapDispatchToProps = dispatch => ({
-    loadMenuChoices: () => dispatch(getMenuChoices()),
-    postCrave: (crave) => dispatch(postCrave(crave)),
+    postCrave: (crave) => dispatch(postCrave(crave))
   })
 
 export default connect(mapStateToProps,mapDispatchToProps)(CraveForm)

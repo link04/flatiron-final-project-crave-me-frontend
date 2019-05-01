@@ -64,8 +64,6 @@ class SignUp extends React.Component {
     if (this.props.user !== undefined && this.props.user.errors){
 
       if(this.props.user.errors[inputName] !== undefined){
-        console.log(this.props.user.errors[inputName]);
-
         errors = this.props.user.errors[inputName].map((error, index) => {
          return <li key={index}>{title} {error}</li>;
        })
@@ -73,6 +71,27 @@ class SignUp extends React.Component {
     }
     return errors;
   }
+
+
+    geoFindMe = (userId) => {
+        const success = (position) =>  {
+          console.log(`${position.coords.latitude} ${position.coords.longitude}`);
+          const coordinates = {
+            coordinates: `${position.coords.latitude} ${position.coords.longitude}`
+          }
+            this.setState({coordinates: coordinates })
+        }
+
+        const error = () => {
+          alert('Unable to retrieve your location, for acurate craving please try again.');
+        }
+
+        if (!navigator.geolocation) {
+          alert('Geolocation is not supported by your browser');
+        } else {
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
+    }
 
   render(){
     const genders = this.props.genders.map(gender => {
@@ -82,14 +101,15 @@ class SignUp extends React.Component {
     const interestedGenders = this.props.genders.map(gender => {
       return (<li key={'interest-'+ gender.id+''}>
         <label key={'interest-'+ gender.id+''} htmlFor={gender.name + "-interest"}>
-          <input key={'interest-'+ gender.id+''}  onChange={ () => this.handleInterestedGendersChange()} id={gender.name + "-interest"} value={gender.id} name="interested_genders" type="checkbox"/>
+          <input key={'interest-'+ gender.id+''}  onChange={ (event) => this.handleInterestedGendersChange(event)} id={gender.name + "-interest"} value={gender.id} name="interested_genders" type="checkbox"/>
           {gender.name}
         </label>
       </li>)
     })
 
     return(
-      <form onSubmit={this.handleSubmit} >
+      <div className="container ">
+        <form onSubmit={this.handleSubmit} >
         { this.props.user.email ?
           <Redirect to='/'  />
            :
@@ -140,6 +160,7 @@ class SignUp extends React.Component {
         <p>Already a member?<Link to={`/login`} className="active"> Log In</Link></p>
         </fieldset>
       </form>
+      </div>
     )
   };
 };

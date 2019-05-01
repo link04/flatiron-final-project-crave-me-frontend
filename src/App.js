@@ -13,6 +13,7 @@ import UserOptionsTab from './components/UserOptionsTab';
 
 import { getUser } from './thunks/userThunks'
 import { loadingManager } from './actions/userActions';
+import { getMenuChoices } from './thunks/menuChoiceThunks';
 
 class App extends React.Component {
 
@@ -25,6 +26,7 @@ class App extends React.Component {
     } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
     }
+    this.props.loadMenuChoices();
   }
 
   render(){
@@ -47,7 +49,7 @@ class App extends React.Component {
             <Route exact path="/" render={() => <UserOptionsTab />} />
           </Switch>
          }
-        <div hidden={this.props.loading }></div>
+        <div hidden={this.props.loading}></div>
       </div>
 
     );
@@ -63,7 +65,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getUser: (token) => dispatch(getUser(token)),
-  loadingManager: () =>  dispatch(loadingManager())
+  loadingManager: () =>  dispatch(loadingManager()),
+  loadMenuChoices: () => dispatch(getMenuChoices())
 })
 
 

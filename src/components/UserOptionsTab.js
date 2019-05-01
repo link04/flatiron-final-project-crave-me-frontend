@@ -30,8 +30,8 @@ class UserOptionsTab  extends React.Component{
   render() {
     return (
       <div >
-      <Col sm="12" >
-        <Nav tabs style={{lineHeight: '50px'}} className="d-flex justify-content-center nav-fill">
+      <Col sm="12"   >
+        <Nav tabs style={{lineHeight: '50px',paddingBottom: '40px', borderBottom:'0px' }} className="d-flex justify-content-center nav-fill">
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '1' })}

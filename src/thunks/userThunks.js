@@ -1,5 +1,5 @@
-import { API_ROOT,HEADERS } from '../constants';
-import { createUser } from '../actions/userActions';
+import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants';
+import { createUser, updateUser } from '../actions/userActions';
 
 export const postUser = (user) => (dispatch) => {
   const userData = new FormData();
@@ -46,5 +46,17 @@ export const loginUser = (userCredentials) => (dispatch) => {
     } else {
       dispatch(createUser({errors:parsedResponse.errors}))
     }
+  })
+}
+
+export const coordinateUser = (userCoordinates, user_id) => (dispatch) => {
+  return fetch(API_ROOT+"update_coordinates/"+ user_id, {
+    method: 'PATCH',
+    headers: ATUTHORIZED_HEADERS,
+    body: JSON.stringify(userCoordinates)
+  })
+  .then(response => response.json())
+  .then(parsedResponse => {
+      dispatch(updateUser(parsedResponse.user))
   })
 }

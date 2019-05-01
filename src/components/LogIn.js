@@ -40,25 +40,27 @@ class LogIn extends React.Component {
   render(){
 
     return(
+      <div className="container" >
+        <form onSubmit={this.handleSubmit} >
+            { this.props.user.email ?
+               <Redirect to='/'  />
+               :
+               null
+            }
+          <fieldset>
+            <legend>Welcome To CraveMe</legend>
+            <h4>Log In</h4>
+            <p><label htmlFor="email">Email Address</label> <input required onChange={this.handleChange} name="email" value={this.state.email} placeholder=" e.g. name@email.com" type="email"/></p>
+            <p><label htmlFor="password">Password</label> <input required onChange={this.handleChange} name="password" value={this.state.password} placeholder="Type Password" type="password"/></p>
+              <ul>
+                {this.checkForErrors('password')}
+              </ul>
+           <input type="submit" value="Log In" />
+           <p>Lacking an account?<Link to={`/signup`} className="active"> Sing Up</Link></p>
+          </fieldset>
+        </form>
+      </div>
 
-      <form onSubmit={this.handleSubmit} >
-          { this.props.user.email ?
-             <Redirect to='/'  />
-             :
-             null
-          }
-        <fieldset>
-          <legend>Welcome To CraveMe</legend>
-          <h4>Log In</h4>
-          <p><label htmlFor="email">Email Address</label> <input required onChange={this.handleChange} name="email" value={this.state.email} placeholder=" e.g. name@email.com" type="email"/></p>
-          <p><label htmlFor="password">Password</label> <input required onChange={this.handleChange} name="password" value={this.state.password} placeholder="Type Password" type="password"/></p>
-            <ul>
-              {this.checkForErrors('password')}
-            </ul>
-         <input type="submit" value="Log In" />
-         <p>Lacking an account?<Link to={`/signup`} className="active"> Sing Up</Link></p>
-        </fieldset>
-      </form>
     )
   };
 };
