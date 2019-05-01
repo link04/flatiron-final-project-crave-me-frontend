@@ -66,16 +66,3 @@ ul li.nav-item  {
     height:100px;
     overflow:scroll;
 }
-/*  Fixed Navbar properties*/
-/* .fixednav {
-    width: 100%;
-    height: 30px;
-    background: #999;
-    line-height:90px; /*this is the key here*/
-/* } */
-/* .fixednav > span {
-    position:fixed;
-    display:block;
-    width:100%;
-    line-height:30px;
-} */

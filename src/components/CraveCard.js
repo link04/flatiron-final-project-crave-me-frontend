@@ -11,7 +11,7 @@ const CraveCard = (props) => {
       })
       return menuChoices[0].name;
     }
-
+    
     return(
       <div className="text-center p-4">
        <h4>Your Current Crave</h4>

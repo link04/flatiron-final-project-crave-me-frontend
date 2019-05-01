@@ -2,13 +2,15 @@ import React from 'react';
 import {Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import MatchList from '../components/MatchList'
+
 class MatchesContainer extends React.Component {
 
   render(){
 
     return(
-      <div>
-        matches
+      <div className="text-center">
+        <MatchList />
       </div>
     )
   }

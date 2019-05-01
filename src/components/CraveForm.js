@@ -38,7 +38,6 @@ class CraveForm extends React.Component {
 
   render(){
 
-
     return(
       <div className="text-center p-4">
         <h5>Create Crave</h5>
