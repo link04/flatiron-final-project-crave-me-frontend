@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://localhost:3000/api/v1/matches/18 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Action Controller: Exception caught</title>
+  <style>
+    body {
+      background-color: #FAFAFA;
+      color: #333;
+      margin: 0px;
+    }
+
+    body, p, ol, ul, td {
+      font-family: helvetica, verdana, arial, sans-serif;
+      font-size:   13px;
+      line-height: 18px;
+    }
+
+    pre {
+      font-size: 11px;
+      white-space: pre-wrap;
+    }
+
+    pre.box {
+      border: 1px solid #EEE;
+      padding: 10px;
+      margin: 0px;
+      width: 958px;
+    }
+
+    header {
+      color: #F0F0F0;
+      background: #C52F24;
+      padding: 0.5em 1.5em;
+    }
+
+    h1 {
+      margin: 0.2em 0;
+      line-height: 1.1em;
+      font-size: 2em;
+    }
+
+    h2 {
+      color: #C52F24;
+      line-height: 25px;
+    }
+
+    .details {
+      border: 1px solid #D0D0D0;
+      border-radius: 4px;
+      margin: 1em 0px;
+      display: block;
+      width: 978px;
+    }
+
+    .summary {
+      padding: 8px 15px;
+      border-bottom: 1px solid #D0D0D0;
+      display: block;
+    }
+
+    .details pre {
+      margin: 5px;
+      border: none;
+    }
+
+    #container {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0 1.5em;
+    }
+
+    .source * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .source {
+      border: 1px solid #D9D9D9;
+      background: #ECECEC;
+      width: 978px;
+    }
+
+    .source pre {
+      padding: 10px 0px;
+      border: none;
+    }
+
+    .source .data {
+      font-size: 80%;
+      overflow: auto;
+      background-color: #FFF;
+    }
+
+    .info {
+      padding: 0.5em;
+    }
+
+    .source .data .line_numbers {
+      background-color: #ECECEC;
+      color: #AAA;
+      padding: 1em .5em;
+      border-right: 1px solid #DDD;
+      text-align: right;
+    }
+
+    .line {
+      padding-left: 10px;
+      white-space: pre;
+    }
+
+    .line:hover {
+      background-color: #F6F6F6;
+    }
+
+    .line.active {
+      background-color: #FFCCCC;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    a { color: #980905; }
+    a:visited { color: #666; }
+    a.trace-frames { color: #666; }
+    a:hover { color: #C52F24; }
+    a.trace-frames.selected { color: #C52F24 }
+
+    
+  </style>
+
+  <script>
+    var toggle = function(id) {
+      var s = document.getElementById(id).style;
+      s.display = s.display == 'none' ? 'block' : 'none';
+      return false;
+    }
+    var show = function(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    var hide = function(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    var toggleTrace = function() {
+      return toggle('blame_trace');
+    }
+    var toggleSessionDump = function() {
+      return toggle('session_dump');
+    }
+    var toggleEnvDump = function() {
+      return toggle('env_dump');
+    }
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>
+    NoMethodError
+      in Api::V1::MatchesController#show
+  </h1>
+</header>
+
+<div id="container">
+  <h2>undefined method `map' for #&lt;ActiveModelSerializers::SerializableResource:0x00007f9ae57941b8&gt;
+Did you mean?  tap</h2>
+
+      <div class="source hidden" id="frame-source-0">
+      <div class="info">
+        Extracted source (around line <strong>#71</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def serializers_from_resources
+</div><div class="line">        serializer_context_class = options.fetch(:serializer_context_class, ActiveModel::Serializer)
+</div><div class="line active">        object.map do |resource|
+</div><div class="line">          serializer_from_resource(resource, serializer_context_class, options)
+</div><div class="line">        end
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-1">
+      <div class="info">
+        Extracted source (around line <strong>#15</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        @options                 = options
+</div><div class="line">        @root                    = options[:root]
+</div><div class="line active">        @serializers             = serializers_from_resources
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      def success?
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-2">
+      <div class="info">
+        Extracted source (around line <strong>#50</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def serializer_instance
+</div><div class="line active">      @serializer_instance ||= serializer.new(resource, serializer_opts)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Get serializer either explicitly :serializer or implicitly from resource
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-3">
+      <div class="info">
+        Extracted source (around line <strong>#50</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def serializer_instance
+</div><div class="line active">      @serializer_instance ||= serializer.new(resource, serializer_opts)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Get serializer either explicitly :serializer or implicitly from resource
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-4">
+      <div class="info">
+        Extracted source (around line <strong>#44</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      return resource unless serializer?
+</div><div class="line">      adapter = catch :no_serializer do
+</div><div class="line active">        ActiveModelSerializers::Adapter.create(serializer_instance, adapter_opts)
+</div><div class="line">      end
+</div><div class="line">      adapter || resource
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-5">
+      <div class="info">
+        Extracted source (around line <strong>#43</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def find_adapter
+</div><div class="line">      return resource unless serializer?
+</div><div class="line active">      adapter = catch :no_serializer do
+</div><div class="line">        ActiveModelSerializers::Adapter.create(serializer_instance, adapter_opts)
+</div><div class="line">      end
+</div><div class="line">      adapter || resource
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-6">
+      <div class="info">
+        Extracted source (around line <strong>#43</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def find_adapter
+</div><div class="line">      return resource unless serializer?
+</div><div class="line active">      adapter = catch :no_serializer do
+</div><div class="line">        ActiveModelSerializers::Adapter.create(serializer_instance, adapter_opts)
+</div><div class="line">      end
+</div><div class="line">      adapter || resource
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-7">
+      <div class="info">
+        Extracted source (around line <strong>#37</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    # NOTE: if no adapter is available, returns the resource itself. (i.e. adapter is a no-op)
+</div><div class="line">    def adapter
+</div><div class="line active">      @adapter ||= find_adapter
+</div><div class="line">    end
+</div><div class="line">    alias adapter_instance adapter
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-8">
+      <div class="info">
+        Extracted source (around line <strong>#50</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      # Otherwise, since `serializable_resource` is not a string, the renderer would call
+</div><div class="line">      # `to_json` on a String and given odd results, such as `"".to_json #=&gt; '""'`
+</div><div class="line active">      serializable_resource.adapter.is_a?(String) ? serializable_resource.adapter : serializable_resource
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Deprecated
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-9">
+      <div class="info">
+        Extracted source (around line <strong>#63</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>61</span>
+<span>62</span>
+<span>63</span>
+<span>64</span>
+<span>65</span>
+<span>66</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          options[:serialization_context] = ActiveModelSerializers::SerializationContext.new(request, options)
+</div><div class="line">        end
+</div><div class="line active">        serializable_resource = get_serializer(resource, options)
+</div><div class="line">        super(serializable_resource, options)
+</div><div class="line">      end
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-10">
+      <div class="info">
+        Extracted source (around line <strong>#150</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
+<span>152</span>
+<span>153</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          _process_options(options)
+</div><div class="line">          method_name = Renderers._render_with_renderer_method_name(name)
+</div><div class="line active">          return send(method_name, options.delete(name), options)
+</div><div class="line">        end
+</div><div class="line">      end
+</div><div class="line">      nil
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-11">
+      <div class="info">
+        Extracted source (around line <strong>#306</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>304</span>
+<span>305</span>
+<span>306</span>
+<span>307</span>
+<span>308</span>
+<span>309</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">  def each(&amp;block)
+</div><div class="line">    block or return enum_for(__method__) { size }
+</div><div class="line active">    @hash.each_key(&amp;block)
+</div><div class="line">    self
+</div><div class="line">  end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-12">
+      <div class="info">
+        Extracted source (around line <strong>#306</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>304</span>
+<span>305</span>
+<span>306</span>
+<span>307</span>
+<span>308</span>
+<span>309</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">  def each(&amp;block)
+</div><div class="line">    block or return enum_for(__method__) { size }
+</div><div class="line active">    @hash.each_key(&amp;block)
+</div><div class="line">    self
+</div><div class="line">  end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-13">
+      <div class="info">
+        Extracted source (around line <strong>#146</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>144</span>
+<span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def _render_to_body_with_renderer(options)
+</div><div class="line active">      _renderers.each do |name|
+</div><div class="line">        if options.key?(name)
+</div><div class="line">          _process_options(options)
+</div><div class="line">          method_name = Renderers._render_with_renderer_method_name(name)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-14">
+      <div class="info">
+        Extracted source (around line <strong>#142</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+<span>144</span>
+<span>145</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    # &lt;tt&gt;ActionView::Rendering.render_to_body&lt;/tt&gt;, if present.
+</div><div class="line">    def render_to_body(options)
+</div><div class="line active">      _render_to_body_with_renderer(options) || super
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    def _render_to_body_with_renderer(options)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-15">
+      <div class="info">
+        Extracted source (around line <strong>#25</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def render(*args, &amp;block)
+</div><div class="line">      options = _normalize_render(*args, &amp;block)
+</div><div class="line active">      rendered_body = render_to_body(options)
+</div><div class="line">      if options[:html]
+</div><div class="line">        _set_html_content_type
+</div><div class="line">      else
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-16">
+      <div class="info">
+        Extracted source (around line <strong>#36</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def render(*args) #:nodoc:
+</div><div class="line">      raise ::AbstractController::DoubleRenderError if response_body
+</div><div class="line active">      super
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Overwrite render_to_string because body can now be set to a Rack body.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-17">
+      <div class="info">
+        Extracted source (around line <strong>#46</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      render_output = nil
+</div><div class="line">      self.view_runtime = cleanup_view_runtime do
+</div><div class="line active">        Benchmark.ms { render_output = super }
+</div><div class="line">      end
+</div><div class="line">      render_output
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-18">
+      <div class="info">
+        Extracted source (around line <strong>#14</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">  #   # =&gt; 0.074
+</div><div class="line">  def ms
+</div><div class="line active">    1000 * realtime { yield }
+</div><div class="line">  end
+</div><div class="line">end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-19">
+      <div class="info">
+        Extracted source (around line <strong>#308</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>306</span>
+<span>307</span>
+<span>308</span>
+<span>309</span>
+<span>310</span>
+<span>311</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">  def realtime # :yield:
+</div><div class="line">    r0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+</div><div class="line active">    yield
+</div><div class="line">    Process.clock_gettime(Process::CLOCK_MONOTONIC) - r0
+</div><div class="line">  end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-20">
+      <div class="info">
+        Extracted source (around line <strong>#14</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">  #   # =&gt; 0.074
+</div><div class="line">  def ms
+</div><div class="line active">    1000 * realtime { yield }
+</div><div class="line">  end
+</div><div class="line">end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-21">
+      <div class="info">
+        Extracted source (around line <strong>#46</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      render_output = nil
+</div><div class="line">      self.view_runtime = cleanup_view_runtime do
+</div><div class="line active">        Benchmark.ms { render_output = super }
+</div><div class="line">      end
+</div><div class="line">      render_output
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-22">
+      <div class="info">
+        Extracted source (around line <strong>#87</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>85</span>
+<span>86</span>
+<span>87</span>
+<span>88</span>
+<span>89</span>
+<span>90</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    #   end
+</div><div class="line">    def cleanup_view_runtime # :doc:
+</div><div class="line active">      yield
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Every time after an action is processed, this method is invoked
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-23">
+      <div class="info">
+        Extracted source (around line <strong>#31</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          db_rt_before_render = ActiveRecord::LogSubscriber.reset_runtime
+</div><div class="line">          self.db_runtime = (db_runtime || 0) + db_rt_before_render
+</div><div class="line active">          runtime = super
+</div><div class="line">          db_rt_after_render = ActiveRecord::LogSubscriber.reset_runtime
+</div><div class="line">          self.db_runtime += db_rt_after_render
+</div><div class="line">          runtime - db_rt_after_render
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-24">
+      <div class="info">
+        Extracted source (around line <strong>#45</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def render(*args)
+</div><div class="line">      render_output = nil
+</div><div class="line active">      self.view_runtime = cleanup_view_runtime do
+</div><div class="line">        Benchmark.ms { render_output = super }
+</div><div class="line">      end
+</div><div class="line">      render_output
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source " id="frame-source-25">
+      <div class="info">
+        Extracted source (around line <strong>#8</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    @user = User.find(params[:id])
+</div><div class="line">
+</div><div class="line active">    render json: @user.active_matches, scope: nil
+</div><div class="line">  end
+</div><div class="line">
+</div><div class="line">end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-26">
+      <div class="info">
+        Extracted source (around line <strong>#6</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">  module BasicImplicitRender # :nodoc:
+</div><div class="line">    def send_action(method, *args)
+</div><div class="line active">      super.tap { default_render unless performed? }
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    def default_render(*args)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-27">
+      <div class="info">
+        Extracted source (around line <strong>#194</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>192</span>
+<span>193</span>
+<span>194</span>
+<span>195</span>
+<span>196</span>
+<span>197</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      # which is *not* necessarily the same as the action name.
+</div><div class="line">      def process_action(method_name, *args)
+</div><div class="line active">        send_action(method_name, *args)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      # Actually call the method associated with the action. Override
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-28">
+      <div class="info">
+        Extracted source (around line <strong>#30</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def process_action(*) #:nodoc:
+</div><div class="line">      self.formats = request.formats.map(&amp;:ref).compact
+</div><div class="line active">      super
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Check for double render errors and set the content_type after rendering.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-29">
+      <div class="info">
+        Extracted source (around line <strong>#42</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def process_action(*args)
+</div><div class="line">      run_callbacks(:process_action) do
+</div><div class="line active">        super
+</div><div class="line">      end
+</div><div class="line">    end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-30">
+      <div class="info">
+        Extracted source (around line <strong>#98</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>96</span>
+<span>97</span>
+<span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      if callbacks.empty?
+</div><div class="line active">        yield if block_given?
+</div><div class="line">      else
+</div><div class="line">        env = Filters::Environment.new(self, false, nil)
+</div><div class="line">        next_sequence = callbacks.compile
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-31">
+      <div class="info">
+        Extracted source (around line <strong>#41</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    # &lt;tt&gt;process_action&lt;/tt&gt; callbacks around the normal behavior.
+</div><div class="line">    def process_action(*args)
+</div><div class="line active">      run_callbacks(:process_action) do
+</div><div class="line">        super
+</div><div class="line">      end
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-32">
+      <div class="info">
+        Extracted source (around line <strong>#22</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    private
+</div><div class="line">      def process_action(*args)
+</div><div class="line active">        super
+</div><div class="line">      rescue Exception =&gt; exception
+</div><div class="line">        request.env["action_dispatch.show_detailed_exceptions"] ||= show_detailed_exceptions?
+</div><div class="line">        rescue_with_handler(exception) || raise
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-33">
+      <div class="info">
+        Extracted source (around line <strong>#34</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      ActiveSupport::Notifications.instrument("process_action.action_controller", raw_payload) do |payload|
+</div><div class="line">        begin
+</div><div class="line active">          result = super
+</div><div class="line">          payload[:status] = response.status
+</div><div class="line">          result
+</div><div class="line">        ensure
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-34">
+      <div class="info">
+        Extracted source (around line <strong>#168</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>166</span>
+<span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
+<span>171</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def instrument(name, payload = {})
+</div><div class="line">        if notifier.listening?(name)
+</div><div class="line active">          instrumenter.instrument(name, payload) { yield payload if block_given? }
+</div><div class="line">        else
+</div><div class="line">          yield payload if block_given?
+</div><div class="line">        end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-35">
+      <div class="info">
+        Extracted source (around line <strong>#23</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        listeners_state = start name, payload
+</div><div class="line">        begin
+</div><div class="line active">          yield payload
+</div><div class="line">        rescue Exception =&gt; e
+</div><div class="line">          payload[:exception] = [e.class.name, e.message]
+</div><div class="line">          payload[:exception_object] = e
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-36">
+      <div class="info">
+        Extracted source (around line <strong>#168</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>166</span>
+<span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
+<span>171</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def instrument(name, payload = {})
+</div><div class="line">        if notifier.listening?(name)
+</div><div class="line active">          instrumenter.instrument(name, payload) { yield payload if block_given? }
+</div><div class="line">        else
+</div><div class="line">          yield payload if block_given?
+</div><div class="line">        end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-37">
+      <div class="info">
+        Extracted source (around line <strong>#32</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      ActiveSupport::Notifications.instrument("start_processing.action_controller", raw_payload.dup)
+</div><div class="line">
+</div><div class="line active">      ActiveSupport::Notifications.instrument("process_action.action_controller", raw_payload) do |payload|
+</div><div class="line">        begin
+</div><div class="line">          result = super
+</div><div class="line">          payload[:status] = response.status
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-38">
+      <div class="info">
+        Extracted source (around line <strong>#256</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>254</span>
+<span>255</span>
+<span>256</span>
+<span>257</span>
+<span>258</span>
+<span>259</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        request.filtered_parameters.merge! wrapped_filtered_hash
+</div><div class="line">      end
+</div><div class="line active">      super
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    private
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-39">
+      <div class="info">
+        Extracted source (around line <strong>#24</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        # and it won't be cleaned up by the method below.
+</div><div class="line">        ActiveRecord::LogSubscriber.reset_runtime
+</div><div class="line active">        super
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      def cleanup_view_runtime
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-40">
+      <div class="info">
+        Extracted source (around line <strong>#134</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>132</span>
+<span>133</span>
+<span>134</span>
+<span>135</span>
+<span>136</span>
+<span>137</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      @_response_body = nil
+</div><div class="line">
+</div><div class="line active">      process_action(action_name, *args)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Delegates to the class' ::controller_path
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-41">
+      <div class="info">
+        Extracted source (around line <strong>#191</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>189</span>
+<span>190</span>
+<span>191</span>
+<span>192</span>
+<span>193</span>
+<span>194</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      set_request!(request)
+</div><div class="line">      set_response!(response)
+</div><div class="line active">      process(name)
+</div><div class="line">      request.commit_flash
+</div><div class="line">      to_a
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-42">
+      <div class="info">
+        Extracted source (around line <strong>#252</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
+<span>254</span>
+<span>255</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        middleware_stack.build(name) { |env| new.dispatch(name, req, res) }.call req.env
+</div><div class="line">      else
+</div><div class="line active">        new.dispatch(name, req, res)
+</div><div class="line">      end
+</div><div class="line">    end
+</div><div class="line">  end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-43">
+      <div class="info">
+        Extracted source (around line <strong>#52</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        def dispatch(controller, action, req, res)
+</div><div class="line active">          controller.dispatch(action, req, res)
+</div><div class="line">        end
+</div><div class="line">      end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-44">
+      <div class="info">
+        Extracted source (around line <strong>#34</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          controller = controller req
+</div><div class="line">          res        = controller.make_response! req
+</div><div class="line active">          dispatch(controller, params[:action], req, res)
+</div><div class="line">        rescue ActionController::RoutingError
+</div><div class="line">          if @raise_on_name_error
+</div><div class="line">            raise
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-45">
+      <div class="info">
+        Extracted source (around line <strong>#52</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          req.path_parameters = set_params.merge parameters
+</div><div class="line">
+</div><div class="line active">          status, headers, body = route.app.serve(req)
+</div><div class="line">
+</div><div class="line">          if "pass" == headers["X-Cascade"]
+</div><div class="line">            req.script_name     = script_name
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-46">
+      <div class="info">
+        Extracted source (around line <strong>#35</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      def serve(req)
+</div><div class="line active">        find_routes(req).each do |match, parameters, route|
+</div><div class="line">          set_params  = req.path_parameters
+</div><div class="line">          path_info   = req.path_info
+</div><div class="line">          script_name = req.script_name
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-47">
+      <div class="info">
+        Extracted source (around line <strong>#35</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      def serve(req)
+</div><div class="line active">        find_routes(req).each do |match, parameters, route|
+</div><div class="line">          set_params  = req.path_parameters
+</div><div class="line">          path_info   = req.path_info
+</div><div class="line">          script_name = req.script_name
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-48">
+      <div class="info">
+        Extracted source (around line <strong>#840</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>838</span>
+<span>839</span>
+<span>840</span>
+<span>841</span>
+<span>842</span>
+<span>843</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        req = make_request(env)
+</div><div class="line">        req.path_info = Journey::Router::Utils.normalize_path(req.path_info)
+</div><div class="line active">        @router.serve(req)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      def recognize_path(path, environment = {})
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-49">
+      <div class="info">
+        Extracted source (around line <strong>#25</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      status, headers, body = @app.call(env)
+</div><div class="line">
+</div><div class="line">      if etag_status?(status) &amp;&amp; etag_body?(body) &amp;&amp; !skip_caching?(headers)
+</div><div class="line">        original_body = body
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-50">
+      <div class="info">
+        Extracted source (around line <strong>#25</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      case env[REQUEST_METHOD]
+</div><div class="line">      when "GET", "HEAD"
+</div><div class="line active">        status, headers, body = @app.call(env)
+</div><div class="line">        headers = Utils::HeaderHash.new(headers)
+</div><div class="line">        if status == 200 &amp;&amp; fresh?(env, headers)
+</div><div class="line">          status = 304
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-51">
+      <div class="info">
+        Extracted source (around line <strong>#12</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      status, headers, body = @app.call(env)
+</div><div class="line">
+</div><div class="line">      if env[REQUEST_METHOD] == HEAD
+</div><div class="line">        [
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-52">
+      <div class="info">
+        Extracted source (around line <strong>#559</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>557</span>
+<span>558</span>
+<span>559</span>
+<span>560</span>
+<span>561</span>
+<span>562</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          @last_check = mtime
+</div><div class="line">        end
+</div><div class="line active">        @app.call(env)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      private
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-53">
+      <div class="info">
+        Extracted source (around line <strong>#28</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      result = run_callbacks :call do
+</div><div class="line">        begin
+</div><div class="line active">          @app.call(env)
+</div><div class="line">        rescue =&gt; error
+</div><div class="line">        end
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-54">
+      <div class="info">
+        Extracted source (around line <strong>#98</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>96</span>
+<span>97</span>
+<span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      if callbacks.empty?
+</div><div class="line active">        yield if block_given?
+</div><div class="line">      else
+</div><div class="line">        env = Filters::Environment.new(self, false, nil)
+</div><div class="line">        next_sequence = callbacks.compile
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-55">
+      <div class="info">
+        Extracted source (around line <strong>#26</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      error = nil
+</div><div class="line active">      result = run_callbacks :call do
+</div><div class="line">        begin
+</div><div class="line">          @app.call(env)
+</div><div class="line">        rescue =&gt; error
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-56">
+      <div class="info">
+        Extracted source (around line <strong>#14</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      state = @executor.run!
+</div><div class="line">      begin
+</div><div class="line active">        response = @app.call(env)
+</div><div class="line">        returned = response &lt;&lt; ::Rack::BodyProxy.new(response.pop) { state.complete! }
+</div><div class="line">      ensure
+</div><div class="line">        state.complete! unless returned
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-57">
+      <div class="info">
+        Extracted source (around line <strong>#61</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>59</span>
+<span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+<span>64</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      request = ActionDispatch::Request.new env
+</div><div class="line active">      _, headers, body = response = @app.call(env)
+</div><div class="line">
+</div><div class="line">      if headers["X-Cascade"] == "pass"
+</div><div class="line">        body.close if body.respond_to?(:close)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-58">
+      <div class="info">
+        Extracted source (around line <strong>#33</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      request = ActionDispatch::Request.new env
+</div><div class="line active">      @app.call(env)
+</div><div class="line">    rescue Exception =&gt; exception
+</div><div class="line">      if request.show_exceptions?
+</div><div class="line">        render_exception(request, exception)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-59">
+      <div class="info">
+        Extracted source (around line <strong>#38</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          instrumenter.start "request.action_dispatch", request: request
+</div><div class="line">          logger.info { started_request_message(request) }
+</div><div class="line active">          status, headers, body = @app.call(env)
+</div><div class="line">          body = ::Rack::BodyProxy.new(body) { finish(request) }
+</div><div class="line">          [status, headers, body]
+</div><div class="line">        rescue Exception
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-60">
+      <div class="info">
+        Extracted source (around line <strong>#26</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        if logger.respond_to?(:tagged)
+</div><div class="line active">          logger.tagged(compute_tags(request)) { call_app(request, env) }
+</div><div class="line">        else
+</div><div class="line">          call_app(request, env)
+</div><div class="line">        end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-61">
+      <div class="info">
+        Extracted source (around line <strong>#71</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def tagged(*tags)
+</div><div class="line active">      formatter.tagged(*tags) { yield self }
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    def flush
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-62">
+      <div class="info">
+        Extracted source (around line <strong>#28</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def tagged(*tags)
+</div><div class="line">        new_tags = push_tags(*tags)
+</div><div class="line active">        yield self
+</div><div class="line">      ensure
+</div><div class="line">        pop_tags(new_tags.size)
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-63">
+      <div class="info">
+        Extracted source (around line <strong>#71</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def tagged(*tags)
+</div><div class="line active">      formatter.tagged(*tags) { yield self }
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    def flush
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-64">
+      <div class="info">
+        Extracted source (around line <strong>#26</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        if logger.respond_to?(:tagged)
+</div><div class="line active">          logger.tagged(compute_tags(request)) { call_app(request, env) }
+</div><div class="line">        else
+</div><div class="line">          call_app(request, env)
+</div><div class="line">        end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-65">
+      <div class="info">
+        Extracted source (around line <strong>#81</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>79</span>
+<span>80</span>
+<span>81</span>
+<span>82</span>
+<span>83</span>
+<span>84</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      req = ActionDispatch::Request.new env
+</div><div class="line">      req.remote_ip = GetIp.new(req, check_ip, proxies)
+</div><div class="line active">      @app.call(req.env)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # The GetIp class exists as a way to defer processing of the request data
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-66">
+      <div class="info">
+        Extracted source (around line <strong>#27</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      req = ActionDispatch::Request.new env
+</div><div class="line">      req.request_id = make_request_id(req.x_request_id)
+</div><div class="line active">      @app.call(env).tap { |_status, headers, _body| headers[X_REQUEST_ID] = req.request_id }
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    private
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-67">
+      <div class="info">
+        Extracted source (around line <strong>#22</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      start_time = Utils.clock_time
+</div><div class="line active">      status, headers, body = @app.call(env)
+</div><div class="line">      request_time = Utils.clock_time - start_time
+</div><div class="line">
+</div><div class="line">      unless headers.has_key?(@header_name)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-68">
+      <div class="info">
+        Extracted source (around line <strong>#29</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          def call(env)
+</div><div class="line">            LocalCacheRegistry.set_cache_for(local_cache_key, LocalStore.new)
+</div><div class="line active">            response = @app.call(env)
+</div><div class="line">            response[2] = ::Rack::BodyProxy.new(response[2]) do
+</div><div class="line">              LocalCacheRegistry.set_cache_for(local_cache_key, nil)
+</div><div class="line">            end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-69">
+      <div class="info">
+        Extracted source (around line <strong>#14</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      state = @executor.run!
+</div><div class="line">      begin
+</div><div class="line active">        response = @app.call(env)
+</div><div class="line">        returned = response &lt;&lt; ::Rack::BodyProxy.new(response.pop) { state.complete! }
+</div><div class="line">      ensure
+</div><div class="line">        state.complete! unless returned
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-70">
+      <div class="info">
+        Extracted source (around line <strong>#127</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      end
+</div><div class="line">
+</div><div class="line active">      @app.call(req.env)
+</div><div class="line">    end
+</div><div class="line">  end
+</div><div class="line">end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-71">
+      <div class="info">
+        Extracted source (around line <strong>#111</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      status, headers, body = @app.call(env)
+</div><div class="line">      if body.respond_to?(:to_path)
+</div><div class="line">        case type = variation(env)
+</div><div class="line">        when 'X-Accel-Redirect'
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-72">
+      <div class="info">
+        Extracted source (around line <strong>#95</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>93</span>
+<span>94</span>
+<span>95</span>
+<span>96</span>
+<span>97</span>
+<span>98</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      vary_resource = resource_for_path(env[PATH_INFO])
+</div><div class="line">
+</div><div class="line active">      status, headers, body = @app.call env
+</div><div class="line">
+</div><div class="line">      if add_headers
+</div><div class="line">        headers = add_headers.merge(headers)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-73">
+      <div class="info">
+        Extracted source (around line <strong>#524</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>522</span>
+<span>523</span>
+<span>524</span>
+<span>525</span>
+<span>526</span>
+<span>527</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      req = build_request env
+</div><div class="line active">      app.call req.env
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Defines additional Rack env configuration that is added on each call.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-74">
+      <div class="info">
+        Extracted source (around line <strong>#227</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>225</span>
+<span>226</span>
+<span>227</span>
+<span>228</span>
+<span>229</span>
+<span>230</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def call(env)
+</div><div class="line">        env[Const::PUMA_CONFIG] = @config
+</div><div class="line active">        @app.call(env)
+</div><div class="line">      end
+</div><div class="line">    end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-75">
+      <div class="info">
+        Extracted source (around line <strong>#660</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>658</span>
+<span>659</span>
+<span>660</span>
+<span>661</span>
+<span>662</span>
+<span>663</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      begin
+</div><div class="line">        begin
+</div><div class="line active">          status, headers, res_body = @app.call(env)
+</div><div class="line">
+</div><div class="line">          return :async if req.hijacked
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-76">
+      <div class="info">
+        Extracted source (around line <strong>#474</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>472</span>
+<span>473</span>
+<span>474</span>
+<span>475</span>
+<span>476</span>
+<span>477</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        while true
+</div><div class="line active">          case handle_request(client, buffer)
+</div><div class="line">          when false
+</div><div class="line">            return
+</div><div class="line">          when :async
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-77">
+      <div class="info">
+        Extracted source (around line <strong>#334</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>332</span>
+<span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        else
+</div><div class="line">          if process_now
+</div><div class="line active">            process_client client, buffer
+</div><div class="line">          else
+</div><div class="line">            client.set_timeout @first_data_timeout
+</div><div class="line">            @reactor.add client
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-78">
+      <div class="info">
+        Extracted source (around line <strong>#135</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>133</span>
+<span>134</span>
+<span>135</span>
+<span>136</span>
+<span>137</span>
+<span>138</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">          begin
+</div><div class="line active">            block.call(work, *extra)
+</div><div class="line">          rescue Exception =&gt; e
+</div><div class="line">            STDERR.puts "Error reached top of thread-pool: #{e.message} (#{e.class})"
+</div><div class="line">          end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+
+  
+<p><code>Rails.root: /Users/maximoBautista/Development/flatiron-final-project-crave-me-backend</code></p>
+
+<div id="traces">
+    <a href="http://localhost:3000/api/v1/matches/18#" onclick="hide(&#39;Framework-Trace&#39;);hide(&#39;Full-Trace&#39;);show(&#39;Application-Trace&#39;);; return false;">Application Trace</a> |
+    <a href="http://localhost:3000/api/v1/matches/18#" onclick="hide(&#39;Application-Trace&#39;);hide(&#39;Full-Trace&#39;);show(&#39;Framework-Trace&#39;);; return false;">Framework Trace</a> |
+    <a href="http://localhost:3000/api/v1/matches/18#" onclick="hide(&#39;Application-Trace&#39;);hide(&#39;Framework-Trace&#39;);show(&#39;Full-Trace&#39;);; return false;">Full Trace</a> 
+
+    <div id="Application-Trace" style="display: block;">
+      <pre><code><a class="trace-frames" data-frame-id="25" href="http://localhost:3000/api/v1/matches/18#">app/controllers/api/v1/matches_controller.rb:8:in `show'</a><br></code></pre>
+    </div>
+    <div id="Framework-Trace" style="display: none;">
+      <pre><code><a class="trace-frames" data-frame-id="0" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model/serializer/collection_serializer.rb:71:in `serializers_from_resources'</a><br><a class="trace-frames" data-frame-id="1" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model/serializer/collection_serializer.rb:15:in `initialize'</a><br><a class="trace-frames" data-frame-id="2" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:50:in `new'</a><br><a class="trace-frames" data-frame-id="3" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:50:in `serializer_instance'</a><br><a class="trace-frames" data-frame-id="4" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:44:in `block in find_adapter'</a><br><a class="trace-frames" data-frame-id="5" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:43:in `catch'</a><br><a class="trace-frames" data-frame-id="6" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:43:in `find_adapter'</a><br><a class="trace-frames" data-frame-id="7" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:37:in `adapter'</a><br><a class="trace-frames" data-frame-id="8" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/action_controller/serialization.rb:50:in `get_serializer'</a><br><a class="trace-frames" data-frame-id="9" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/action_controller/serialization.rb:63:in `block (2 levels) in &lt;module:Serialization&gt;'</a><br><a class="trace-frames" data-frame-id="10" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/renderers.rb:150:in `block in _render_to_body_with_renderer'</a><br><a class="trace-frames" data-frame-id="11" href="http://localhost:3000/api/v1/matches/18#">/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/set.rb:306:in `each_key'</a><br><a class="trace-frames" data-frame-id="12" href="http://localhost:3000/api/v1/matches/18#">/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/set.rb:306:in `each'</a><br><a class="trace-frames" data-frame-id="13" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/renderers.rb:146:in `_render_to_body_with_renderer'</a><br><a class="trace-frames" data-frame-id="14" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/renderers.rb:142:in `render_to_body'</a><br><a class="trace-frames" data-frame-id="15" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/rendering.rb:25:in `render'</a><br><a class="trace-frames" data-frame-id="16" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/rendering.rb:36:in `render'</a><br><a class="trace-frames" data-frame-id="17" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:46:in `block (2 levels) in render'</a><br><a class="trace-frames" data-frame-id="18" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/core_ext/benchmark.rb:14:in `block in ms'</a><br><a class="trace-frames" data-frame-id="19" href="http://localhost:3000/api/v1/matches/18#">/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'</a><br><a class="trace-frames" data-frame-id="20" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/core_ext/benchmark.rb:14:in `ms'</a><br><a class="trace-frames" data-frame-id="21" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:46:in `block in render'</a><br><a class="trace-frames" data-frame-id="22" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'</a><br><a class="trace-frames" data-frame-id="23" href="http://localhost:3000/api/v1/matches/18#">activerecord (5.2.3) lib/active_record/railties/controller_runtime.rb:31:in `cleanup_view_runtime'</a><br><a class="trace-frames" data-frame-id="24" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:45:in `render'</a><br><a class="trace-frames" data-frame-id="26" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'</a><br><a class="trace-frames" data-frame-id="27" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/base.rb:194:in `process_action'</a><br><a class="trace-frames" data-frame-id="28" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/rendering.rb:30:in `process_action'</a><br><a class="trace-frames" data-frame-id="29" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/callbacks.rb:42:in `block in process_action'</a><br><a class="trace-frames" data-frame-id="30" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'</a><br><a class="trace-frames" data-frame-id="31" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/callbacks.rb:41:in `process_action'</a><br><a class="trace-frames" data-frame-id="32" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/rescue.rb:22:in `process_action'</a><br><a class="trace-frames" data-frame-id="33" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'</a><br><a class="trace-frames" data-frame-id="34" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/notifications.rb:168:in `block in instrument'</a><br><a class="trace-frames" data-frame-id="35" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/notifications/instrumenter.rb:23:in `instrument'</a><br><a class="trace-frames" data-frame-id="36" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/notifications.rb:168:in `instrument'</a><br><a class="trace-frames" data-frame-id="37" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:32:in `process_action'</a><br><a class="trace-frames" data-frame-id="38" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'</a><br><a class="trace-frames" data-frame-id="39" href="http://localhost:3000/api/v1/matches/18#">activerecord (5.2.3) lib/active_record/railties/controller_runtime.rb:24:in `process_action'</a><br><a class="trace-frames" data-frame-id="40" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/base.rb:134:in `process'</a><br><a class="trace-frames" data-frame-id="41" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'</a><br><a class="trace-frames" data-frame-id="42" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'</a><br><a class="trace-frames" data-frame-id="43" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'</a><br><a class="trace-frames" data-frame-id="44" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'</a><br><a class="trace-frames" data-frame-id="45" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'</a><br><a class="trace-frames" data-frame-id="46" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'</a><br><a class="trace-frames" data-frame-id="47" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'</a><br><a class="trace-frames" data-frame-id="48" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'</a><br><a class="trace-frames" data-frame-id="49" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/etag.rb:25:in `call'</a><br><a class="trace-frames" data-frame-id="50" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/conditional_get.rb:25:in `call'</a><br><a class="trace-frames" data-frame-id="51" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/head.rb:12:in `call'</a><br><a class="trace-frames" data-frame-id="52" href="http://localhost:3000/api/v1/matches/18#">activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'</a><br><a class="trace-frames" data-frame-id="53" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'</a><br><a class="trace-frames" data-frame-id="54" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'</a><br><a class="trace-frames" data-frame-id="55" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'</a><br><a class="trace-frames" data-frame-id="56" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'</a><br><a class="trace-frames" data-frame-id="57" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'</a><br><a class="trace-frames" data-frame-id="58" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'</a><br><a class="trace-frames" data-frame-id="59" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'</a><br><a class="trace-frames" data-frame-id="60" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'</a><br><a class="trace-frames" data-frame-id="61" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'</a><br><a class="trace-frames" data-frame-id="62" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'</a><br><a class="trace-frames" data-frame-id="63" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'</a><br><a class="trace-frames" data-frame-id="64" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'</a><br><a class="trace-frames" data-frame-id="65" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'</a><br><a class="trace-frames" data-frame-id="66" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'</a><br><a class="trace-frames" data-frame-id="67" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/runtime.rb:22:in `call'</a><br><a class="trace-frames" data-frame-id="68" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'</a><br><a class="trace-frames" data-frame-id="69" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'</a><br><a class="trace-frames" data-frame-id="70" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'</a><br><a class="trace-frames" data-frame-id="71" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/sendfile.rb:111:in `call'</a><br><a class="trace-frames" data-frame-id="72" href="http://localhost:3000/api/v1/matches/18#">rack-cors (1.0.3) lib/rack/cors.rb:95:in `call'</a><br><a class="trace-frames" data-frame-id="73" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/engine.rb:524:in `call'</a><br><a class="trace-frames" data-frame-id="74" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/configuration.rb:227:in `call'</a><br><a class="trace-frames" data-frame-id="75" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/server.rb:660:in `handle_request'</a><br><a class="trace-frames" data-frame-id="76" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/server.rb:474:in `process_client'</a><br><a class="trace-frames" data-frame-id="77" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/server.rb:334:in `block in run'</a><br><a class="trace-frames" data-frame-id="78" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'</a><br></code></pre>
+    </div>
+    <div id="Full-Trace" style="display: none;">
+      <pre><code><a class="trace-frames" data-frame-id="0" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model/serializer/collection_serializer.rb:71:in `serializers_from_resources'</a><br><a class="trace-frames" data-frame-id="1" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model/serializer/collection_serializer.rb:15:in `initialize'</a><br><a class="trace-frames" data-frame-id="2" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:50:in `new'</a><br><a class="trace-frames" data-frame-id="3" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:50:in `serializer_instance'</a><br><a class="trace-frames" data-frame-id="4" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:44:in `block in find_adapter'</a><br><a class="trace-frames" data-frame-id="5" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:43:in `catch'</a><br><a class="trace-frames" data-frame-id="6" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:43:in `find_adapter'</a><br><a class="trace-frames" data-frame-id="7" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/active_model_serializers/serializable_resource.rb:37:in `adapter'</a><br><a class="trace-frames" data-frame-id="8" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/action_controller/serialization.rb:50:in `get_serializer'</a><br><a class="trace-frames" data-frame-id="9" href="http://localhost:3000/api/v1/matches/18#">active_model_serializers (0.10.9) lib/action_controller/serialization.rb:63:in `block (2 levels) in &lt;module:Serialization&gt;'</a><br><a class="trace-frames" data-frame-id="10" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/renderers.rb:150:in `block in _render_to_body_with_renderer'</a><br><a class="trace-frames" data-frame-id="11" href="http://localhost:3000/api/v1/matches/18#">/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/set.rb:306:in `each_key'</a><br><a class="trace-frames" data-frame-id="12" href="http://localhost:3000/api/v1/matches/18#">/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/set.rb:306:in `each'</a><br><a class="trace-frames" data-frame-id="13" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/renderers.rb:146:in `_render_to_body_with_renderer'</a><br><a class="trace-frames" data-frame-id="14" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/renderers.rb:142:in `render_to_body'</a><br><a class="trace-frames" data-frame-id="15" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/rendering.rb:25:in `render'</a><br><a class="trace-frames" data-frame-id="16" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/rendering.rb:36:in `render'</a><br><a class="trace-frames" data-frame-id="17" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:46:in `block (2 levels) in render'</a><br><a class="trace-frames" data-frame-id="18" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/core_ext/benchmark.rb:14:in `block in ms'</a><br><a class="trace-frames" data-frame-id="19" href="http://localhost:3000/api/v1/matches/18#">/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'</a><br><a class="trace-frames" data-frame-id="20" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/core_ext/benchmark.rb:14:in `ms'</a><br><a class="trace-frames" data-frame-id="21" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:46:in `block in render'</a><br><a class="trace-frames" data-frame-id="22" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'</a><br><a class="trace-frames" data-frame-id="23" href="http://localhost:3000/api/v1/matches/18#">activerecord (5.2.3) lib/active_record/railties/controller_runtime.rb:31:in `cleanup_view_runtime'</a><br><a class="trace-frames" data-frame-id="24" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:45:in `render'</a><br><a class="trace-frames" data-frame-id="25" href="http://localhost:3000/api/v1/matches/18#">app/controllers/api/v1/matches_controller.rb:8:in `show'</a><br><a class="trace-frames" data-frame-id="26" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'</a><br><a class="trace-frames" data-frame-id="27" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/base.rb:194:in `process_action'</a><br><a class="trace-frames" data-frame-id="28" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/rendering.rb:30:in `process_action'</a><br><a class="trace-frames" data-frame-id="29" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/callbacks.rb:42:in `block in process_action'</a><br><a class="trace-frames" data-frame-id="30" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'</a><br><a class="trace-frames" data-frame-id="31" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/callbacks.rb:41:in `process_action'</a><br><a class="trace-frames" data-frame-id="32" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/rescue.rb:22:in `process_action'</a><br><a class="trace-frames" data-frame-id="33" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'</a><br><a class="trace-frames" data-frame-id="34" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/notifications.rb:168:in `block in instrument'</a><br><a class="trace-frames" data-frame-id="35" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/notifications/instrumenter.rb:23:in `instrument'</a><br><a class="trace-frames" data-frame-id="36" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/notifications.rb:168:in `instrument'</a><br><a class="trace-frames" data-frame-id="37" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:32:in `process_action'</a><br><a class="trace-frames" data-frame-id="38" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'</a><br><a class="trace-frames" data-frame-id="39" href="http://localhost:3000/api/v1/matches/18#">activerecord (5.2.3) lib/active_record/railties/controller_runtime.rb:24:in `process_action'</a><br><a class="trace-frames" data-frame-id="40" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/abstract_controller/base.rb:134:in `process'</a><br><a class="trace-frames" data-frame-id="41" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'</a><br><a class="trace-frames" data-frame-id="42" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'</a><br><a class="trace-frames" data-frame-id="43" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'</a><br><a class="trace-frames" data-frame-id="44" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'</a><br><a class="trace-frames" data-frame-id="45" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'</a><br><a class="trace-frames" data-frame-id="46" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'</a><br><a class="trace-frames" data-frame-id="47" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'</a><br><a class="trace-frames" data-frame-id="48" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'</a><br><a class="trace-frames" data-frame-id="49" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/etag.rb:25:in `call'</a><br><a class="trace-frames" data-frame-id="50" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/conditional_get.rb:25:in `call'</a><br><a class="trace-frames" data-frame-id="51" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/head.rb:12:in `call'</a><br><a class="trace-frames" data-frame-id="52" href="http://localhost:3000/api/v1/matches/18#">activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'</a><br><a class="trace-frames" data-frame-id="53" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'</a><br><a class="trace-frames" data-frame-id="54" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'</a><br><a class="trace-frames" data-frame-id="55" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'</a><br><a class="trace-frames" data-frame-id="56" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'</a><br><a class="trace-frames" data-frame-id="57" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'</a><br><a class="trace-frames" data-frame-id="58" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'</a><br><a class="trace-frames" data-frame-id="59" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'</a><br><a class="trace-frames" data-frame-id="60" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'</a><br><a class="trace-frames" data-frame-id="61" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'</a><br><a class="trace-frames" data-frame-id="62" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'</a><br><a class="trace-frames" data-frame-id="63" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'</a><br><a class="trace-frames" data-frame-id="64" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'</a><br><a class="trace-frames" data-frame-id="65" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'</a><br><a class="trace-frames" data-frame-id="66" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'</a><br><a class="trace-frames" data-frame-id="67" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/runtime.rb:22:in `call'</a><br><a class="trace-frames" data-frame-id="68" href="http://localhost:3000/api/v1/matches/18#">activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'</a><br><a class="trace-frames" data-frame-id="69" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'</a><br><a class="trace-frames" data-frame-id="70" href="http://localhost:3000/api/v1/matches/18#">actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'</a><br><a class="trace-frames" data-frame-id="71" href="http://localhost:3000/api/v1/matches/18#">rack (2.0.7) lib/rack/sendfile.rb:111:in `call'</a><br><a class="trace-frames" data-frame-id="72" href="http://localhost:3000/api/v1/matches/18#">rack-cors (1.0.3) lib/rack/cors.rb:95:in `call'</a><br><a class="trace-frames" data-frame-id="73" href="http://localhost:3000/api/v1/matches/18#">railties (5.2.3) lib/rails/engine.rb:524:in `call'</a><br><a class="trace-frames" data-frame-id="74" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/configuration.rb:227:in `call'</a><br><a class="trace-frames" data-frame-id="75" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/server.rb:660:in `handle_request'</a><br><a class="trace-frames" data-frame-id="76" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/server.rb:474:in `process_client'</a><br><a class="trace-frames" data-frame-id="77" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/server.rb:334:in `block in run'</a><br><a class="trace-frames" data-frame-id="78" href="http://localhost:3000/api/v1/matches/18#">puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'</a><br></code></pre>
+    </div>
+
+  <script type="text/javascript">
+    var traceFrames = document.getElementsByClassName('trace-frames');
+    var selectedFrame, currentSource = document.getElementById('frame-source-0');
+
+    // Add click listeners for all stack frames
+    for (var i = 0; i < traceFrames.length; i++) {
+      traceFrames[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = e.target;
+        var frame_id = target.dataset.frameId;
+
+        if (selectedFrame) {
+          selectedFrame.className = selectedFrame.className.replace("selected", "");
+        }
+
+        target.className += " selected";
+        selectedFrame = target;
+
+        // Change the extracted source code
+        changeSourceExtract(frame_id);
+      });
+
+      function changeSourceExtract(frame_id) {
+        var el = document.getElementById('frame-source-' + frame_id);
+        if (currentSource && el) {
+          currentSource.className += " hidden";
+          el.className = el.className.replace(" hidden", "");
+          currentSource = el;
+        }
+      }
+    }
+  </script>
+</div>
+
+  
+<h2 style="margin-top: 30px">Request</h2>
+<p><b>Parameters</b>:</p> <pre>{"id"=&gt;"18"}
+</pre>
+
+<div class="details">
+  <div class="summary"><a href="http://localhost:3000/api/v1/matches/18#" onclick="return toggleSessionDump()">Toggle session dump</a></div>
+  <div id="session_dump" style="display:none"><pre></pre></div>
+</div>
+
+<div class="details">
+  <div class="summary"><a href="http://localhost:3000/api/v1/matches/18#" onclick="return toggleEnvDump()">Toggle env dump</a></div>
+  <div id="env_dump" style="display:none"><pre>GATEWAY_INTERFACE: "CGI/1.2"
+HTTP_ACCEPT: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"
+HTTP_ACCEPT_ENCODING: "gzip, deflate, br"
+HTTP_ACCEPT_LANGUAGE: "en-US,en;q=0.9,es;q=0.8"
+HTTP_CACHE_CONTROL: "max-age=0"
+HTTP_VERSION: "HTTP/1.1"
+ORIGINAL_SCRIPT_NAME: ""
+REMOTE_ADDR: "::1"
+SERVER_NAME: "localhost"
+SERVER_PROTOCOL: "HTTP/1.1"</pre></div>
+</div>
+
+<h2 style="margin-top: 30px">Response</h2>
+<p><b>Headers</b>:</p> <pre>None</pre>
+
+</div>
+
+
+
+
+</body></html>

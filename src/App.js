@@ -18,6 +18,7 @@ import { getMenuChoices } from './thunks/menuChoiceThunks';
 class App extends React.Component {
 
   componentDidMount(){
+    this.props.loadMenuChoices();
     const location = this.props.history.location.pathname;
     const token = localStorage.token;
     if(token){
@@ -26,10 +27,11 @@ class App extends React.Component {
     } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
     }
-    this.props.loadMenuChoices();
   }
 
   render(){
+    console.log(this.props.loading);
+
     return (
       <div>
          <NavBar />
@@ -49,7 +51,7 @@ class App extends React.Component {
             <Route exact path="/" render={() => <UserOptionsTab />} />
           </Switch>
          }
-        <div hidden={this.props.loading}></div>
+        <div id="load-model" className="modal" hidden={!this.props.loading}></div>
       </div>
 
     );

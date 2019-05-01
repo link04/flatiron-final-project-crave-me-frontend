@@ -5,18 +5,32 @@ import MatchCard from './MatchCard';
 
 const MatchList = (props) => {
 
-  const menuChoicesFilterAndMapper = (filterParam) => {
-      const menuChoices = props.menuChoices.filter(choice => {
-        return choice.id === filterParam
-      })
-      return menuChoices[0].name;
-    }
+      const userMatches = (sentProps) => {
+        const mappedMatchesCards = [];
+        sentProps.userMatches.forEach(match => {
+          match.matched_craves.forEach(matched_crave => {
+            if(matched_crave.user_data.id !== sentProps.user.id && matched_crave.accepted_match === null){
+              mappedMatchesCards.push(<MatchCard  key={'matched_crave'+ matched_crave.id} matchData={matched_crave} />)
+            }
+          })
+        })
+        return mappedMatchesCards;
+      }
+
 
     return(
-      <div className="text-center p-4">
-        <h4>Actual Matches</h4>
-        <MatchCard />
-
+      <div className="text-center p-4" >
+        { props.userMatches > 0 || Object.keys({...props.user.last_crave}).length > 0  ?
+          <>
+            <h4>Actual Matches</h4>
+            {props.userMatches !== undefined ? userMatches(props) : null}
+          </>
+          :
+          <>
+            <h4>You Have No Matches Yet</h4>
+            <h6>Did you craved, already?</h6>
+          </>
+        }
       </div>
     )
 
@@ -24,8 +38,8 @@ const MatchList = (props) => {
 
 const mapStateToProps = state => {
   return {
-    userCrave: state.userReducer.user.last_crave,
-    menuChoices: state.menuChoiceReducer.menuChoices,
+    user: state.userReducer.user,
+    userMatches: state.userReducer.user.active_matches
   }
 }
 

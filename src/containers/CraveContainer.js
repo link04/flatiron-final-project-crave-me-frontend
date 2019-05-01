@@ -17,18 +17,14 @@ class CraveContainer extends React.Component {
 
   geoFindMe = (userId) => {
       const success = (position) =>  {
-        console.log(`${position.coords.latitude} ${position.coords.longitude}`);
         const coordinates = {
           coordinates: `${position.coords.latitude} ${position.coords.longitude}`
         }
-          console.log(this.props.user.id);
           if(this.props.user.id !== undefined) {
             this.setState({
               located:true
             }, () => this.props.udpatedCoordinates(coordinates , this.props.user.id));
           }
-
-
       }
 
       const error = () => {
@@ -47,6 +43,8 @@ class CraveContainer extends React.Component {
       if(!this.state.located){
         this.geoFindMe();
       }
+      
+      console.log(this.props.user);
 
     return(
       <div>

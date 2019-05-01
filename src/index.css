@@ -2,7 +2,7 @@ body {
   font-family: 'Source Serif Pro', serif;
 }
 
-.modal {
+div#load-modal.modal {
     display:    none;
     position:   fixed;
     z-index:    1000;
@@ -17,15 +17,34 @@ body {
                 no-repeat;
 }
 
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-.modal {
-    overflow: hidden;
+div#load-modal.modal {
+   overflow: hidden;
 }
 
+div#load-modal.modal {
+   display: block;
+}
+
+ div#user-profile-modal.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    text-align: center;
+    background: #dce4eb;
+
+}
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+ div#user-profile-modal.modal {
+    overflow: hidden;
+}
 /* Anytime the body has the loading class, our
    modal element will be visible */
-.modal {
+ div#user-profile-modal.modal {
     display: block;
 }
 
@@ -65,4 +84,26 @@ ul li.nav-item  {
 .select{
     height:100px;
     overflow:scroll;
+}
+
+/* img {
+  max-width: 80%;
+  height: auto;
+} */
+@media screen and (min-width: 300px) {
+  img.card-img {
+    width: 100px;
+  }
+}
+
+
+
+.avatar {
+    max-height:80vh;
+    max-width:40vh;
+    margin: 10px;
+    border:3px solid #85a2b6;
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
 }

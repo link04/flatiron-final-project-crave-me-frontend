@@ -13,9 +13,11 @@ const reducer = (userState = initialUserState, action) => {
     case 'REMOVE_USER':
       return {...userState, user: {}}
     case 'SET_USER_CRAVE':
-      return {...userState, user: {...userState.user, last_crave:action.payload}}
+      return {...userState, user: {...userState.user, last_crave:action.payload.crave, active_matches:action.payload.matches}}
+    case 'SET_USER_MATCHES':
+      return {...userState, user: {...userState.user, active_matches:action.payload}}
     case 'UPDATE_USER':
-      return {...userState, user: {...userState.user, coordinate:action.payload}}
+      return {...userState, user: {...userState.user, coordinates:action.payload}}
     default:
     return userState
   }

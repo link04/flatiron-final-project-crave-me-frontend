@@ -53,7 +53,7 @@ class UserOptionsTab  extends React.Component{
               className={classnames({ active: this.state.activeTab === '3' })}
               onClick={() => { this.toggle('3'); }}
             >
-              Cravings
+              Craves
             </NavLink>
           </NavItem>
         </Nav>

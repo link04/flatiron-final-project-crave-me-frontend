@@ -1,5 +1,5 @@
 import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants';
-import { createUser, updateUser } from '../actions/userActions';
+import { createUser, updateUser , setUserMatches} from '../actions/userActions';
 
 export const postUser = (user) => (dispatch) => {
   const userData = new FormData();
@@ -58,5 +58,15 @@ export const coordinateUser = (userCoordinates, user_id) => (dispatch) => {
   .then(response => response.json())
   .then(parsedResponse => {
       dispatch(updateUser(parsedResponse.user))
+  })
+}
+
+export const getUserMatches = (user_id) => (dispatch) => {
+  return fetch(API_ROOT+"show_matches/"+ user_id, {
+    headers: ATUTHORIZED_HEADERS
+  })
+  .then(response => response.json())
+  .then(parsedResponse => {
+      dispatch(setUserMatches(parsedResponse.active_matches))
   })
 }

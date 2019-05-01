@@ -1,6 +1,6 @@
 import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants';
 import { setCrave } from '../actions/craveActions';
-import { setUserCrave } from '../actions/userActions';
+import { setUserCrave, setUserMatches } from '../actions/userActions';
 
 
 export const postCrave = (craveData) => (dispatch) => {
@@ -12,7 +12,8 @@ export const postCrave = (craveData) => (dispatch) => {
   .then(response => response.json())
   .then(parsedResponse => {
     if(parsedResponse.crave){
-      dispatch(setUserCrave(parsedResponse.crave))
+      dispatch(setUserCrave(parsedResponse.crave, parsedResponse.active_matches))
+      // dispatch(setUserMatches(parsedResponse.active_matches))
     } else {
       parsedResponse.errors.forEach(error => {
         alert(error)
