@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+// import moment from 'moment';
+import { Button, Modal, ModalBody, ModalFooter, Tooltip } from 'reactstrap';
+import {updateUserMatches} from '../thunks/userThunks';
 
 class MatchCard extends React.Component  {
 
   state = {
-    displayUser: false
+    displayUser: false,
+    tooltipOpen: false
   }
 
    menuChoicesFilterAndMapper = (filterParam) => {
@@ -20,7 +22,6 @@ class MatchCard extends React.Component  {
       this.setState({
         displayUser: !this.state.displayUser
       })
-      console.log('eewerweererwe', this.state.displayUser);
     }
 
     toggle = () => {
@@ -29,6 +30,18 @@ class MatchCard extends React.Component  {
       }));
     }
 
+      toggleTooltip = () => {
+        this.setState({
+          tooltipOpen: !this.state.tooltipOpen
+        });
+      }
+
+      handleUserClick = choice => {
+        debugger
+        this.props.updateUserMatches(this.props.matchData.id,{user_id:this.props.userId, accepted_match: choice});
+      }
+
+
   render(){
       const {full_name, gender, age, image_url, crave } = this.props.matchData.user_data;
       return(
@@ -36,16 +49,21 @@ class MatchCard extends React.Component  {
 
           <div className="card mb-9" >
             <div className="row no-gutters justify-content-center">
-                <div className="col-md-3">
-                  <img src={require('../assets/images/would-eat.png')} className="card-img" alt="Read heart with fork and knife." />
-                </div>
+                <div className="col-md-3" id="crave" >
+                  <img onClick={() => this.handleUserClick(true) } src={require('../assets/images/would-eat.png')}  className="card-img" alt="Read heart with fork and knife." />
+                  <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="crave" toggle={this.toggleTooltip}>
+                    Crave this User!
+                  </Tooltip>
+              </div>
 
                 <div className="col-md-3">
-                  <img  onClick={this.handleUserDisplay} src={image_url} className="card-img" alt={full_name} />
-
+                  <img  onClick={this.handleUserDisplay} src={image_url}  className="card-img" alt={full_name} />
                 </div>
-                <div className="col-md-3">
-                <img   src={require('../assets/images/would-not-eat.png')} className="card-img" alt="Black heart with fork and knife." />
+                <div className="col-md-3" id="un-crave">
+                  <img onClick={() => this.handleUserClick(false) } src={require('../assets/images/would-not-eat.png')} className="card-img" alt="Black heart with fork and knife." />
+                    <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="un-crave" toggle={this.toggleTooltip}>
+                      Not-Crave this User!
+                    </Tooltip>
                 </div>
               </div>
               <div className="card-footer">
@@ -57,7 +75,7 @@ class MatchCard extends React.Component  {
                 }</p>
               </div>
           </div>
-              <div >
+              <div>
                 <Modal isOpen={this.state.displayUser} toggle={this.toggle}  className="text-center justify-content-center">
                   <ModalBody>
                     <img onClick={this.handleUserDisplay}  src={image_url} className="avatar " alt={full_name} />
@@ -74,13 +92,18 @@ class MatchCard extends React.Component  {
         </div>
       )
   }
-}
+};
 
 const mapStateToprops = state => {
   return {
+    userId: state.userReducer.user.id,
     userCraves: state.userReducer.user.craves,
     menuChoices: state.menuChoiceReducer.menuChoices
   }
-}
+};
 
-export default connect(mapStateToprops)(MatchCard) ;
+const mapDispatchToProps = dispatch => ({
+  updateUserMatches: (matchedCraveId, matchedCraveData) => dispatch(updateUserMatches(matchedCraveId,matchedCraveData))
+});
+
+export default connect(mapStateToprops, mapDispatchToProps)(MatchCard);

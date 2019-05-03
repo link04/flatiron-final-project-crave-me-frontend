@@ -2,8 +2,31 @@ body {
   font-family: 'Source Serif Pro', serif;
 }
 
-div#load-modal.modal {
-    display:    none;
+
+ul#tab-options {
+  line-height: 50px;
+  padding-bottom: 40px;
+  border-bottom: 0px;
+}
+
+ul#tab-options li {
+  border: 0.5px solid rgb(68, 68, 68);
+  border-radius: 10px;
+  border-bottom: 0px;
+  cursor: pointer;
+}
+
+#user-profile p {
+  border: 1px solid #212529;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+
+.modal-load {
+    display: block;
+    overflow:    hidden;
+    display:    block;
     position:   fixed;
     z-index:    1000;
     top:        0;
@@ -15,14 +38,7 @@ div#load-modal.modal {
                 url('./assets/svg-loading.svg')
                 50% 50%
                 no-repeat;
-}
 
-div#load-modal.modal {
-   overflow: hidden;
-}
-
-div#load-modal.modal {
-   display: block;
 }
 
  div#user-profile-modal.modal {
@@ -55,16 +71,10 @@ div#load-modal.modal {
 
 /* Will center the blocks displayed when the tabs is clicked.  */
 .tab-childs {
-  /* position: fixed;
+
+  margin: 0vh 10vw;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  border: solid;
-  border-style: solid;
-  border-width: 1px; */
-  top: 50%;
-  left: 50%;
-  transform: translate( -50%);
   border: solid;
   border-style: solid;
   border-width: 1px;
@@ -86,16 +96,21 @@ ul li.nav-item  {
     overflow:scroll;
 }
 
-/* img {
-  max-width: 80%;
-  height: auto;
-} */
+/* Images css */
+
+.low-quality-img {
+   position: whatever;
+   background-repeat: no-repeat;
+   background-position: whatever whatever;
+   /* background-image: url(dir/image.jpg); */
+   /* image.jpg is a low-resolution at 30% quality. */
+}
+
 @media screen and (min-width: 300px) {
   img.card-img {
     width: 100px;
   }
 }
-
 
 
 .avatar {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { Button } from 'reactstrap';
 
@@ -16,7 +16,6 @@ class MatchesContainer extends React.Component {
           <MatchList />
         </div>
         <Button className="m-2" style={{backgroundColor: '#85a2b6'}} onClick={() => this.props.getUserMatches(this.props.user.id)}>Refresh Matches</Button>
-
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
 import moment from 'moment';
 
 const CraveCard = (props) => {
@@ -11,7 +11,7 @@ const CraveCard = (props) => {
       })
       return menuChoices[0].name;
     }
-    
+
     return(
       <div className="text-center p-4">
        <h4>Your Current Crave</h4>

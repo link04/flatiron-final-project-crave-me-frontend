@@ -1,5 +1,5 @@
-import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants';
-import { createUser, updateUser , setUserMatches} from '../actions/userActions';
+import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants/index.js';
+import { createUser, updateUser, setUserMatches} from '../actions/userActions';
 
 export const postUser = (user) => (dispatch) => {
   const userData = new FormData();
@@ -24,7 +24,7 @@ export const postUser = (user) => (dispatch) => {
 export const getUser = (token) => (dispatch) => {
   return fetch(API_ROOT+"profile/", {
     method: 'GET',
-    headers: {...HEADERS, Authorization: `${token}`}
+    headers: ATUTHORIZED_HEADERS
   })
   .then(response => response.json())
   .then(parsedResponse => {
@@ -64,6 +64,18 @@ export const coordinateUser = (userCoordinates, user_id) => (dispatch) => {
 export const getUserMatches = (user_id) => (dispatch) => {
   return fetch(API_ROOT+"show_matches/"+ user_id, {
     headers: ATUTHORIZED_HEADERS
+  })
+  .then(response => response.json())
+  .then(parsedResponse => {
+      dispatch(setUserMatches(parsedResponse.active_matches))
+  })
+}
+
+export const updateUserMatches = (matchedCraveId, matchedCraveData) => (dispatch) => {
+  return fetch(API_ROOT+"matched_craves/"+ matchedCraveId, {
+    method: 'PATCH',
+    headers: ATUTHORIZED_HEADERS,
+    body: JSON.stringify({matched_crave: matchedCraveData})
   })
   .then(response => response.json())
   .then(parsedResponse => {

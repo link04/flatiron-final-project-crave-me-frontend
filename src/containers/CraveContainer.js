@@ -7,12 +7,10 @@ import { coordinateUser } from '../thunks/userThunks';
 
 class CraveContainer extends React.Component {
 
-  constructor(props){
-    super(props);
-  }
-
-  state = {
-    located:false
+  componentDidMount(){
+    if(Object.keys(this.props.user).length > 0){
+      this.geoFindMe();
+    }
   }
 
   geoFindMe = (userId) => {
@@ -20,11 +18,7 @@ class CraveContainer extends React.Component {
         const coordinates = {
           coordinates: `${position.coords.latitude} ${position.coords.longitude}`
         }
-          if(this.props.user.id !== undefined) {
-            this.setState({
-              located:true
-            }, () => this.props.udpatedCoordinates(coordinates , this.props.user.id));
-          }
+          this.props.udpatedCoordinates(coordinates , this.props.user.id)
       }
 
       const error = () => {
@@ -40,11 +34,6 @@ class CraveContainer extends React.Component {
 
 
   render(){
-      if(!this.state.located){
-        this.geoFindMe();
-      }
-      
-      console.log(this.props.user);
 
     return(
       <div>

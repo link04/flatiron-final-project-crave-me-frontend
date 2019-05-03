@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter, Link, Redirect} from 'react-router-dom';
 
-import { loginUser, getUser } from '../thunks/userThunks';
+import { loginUser } from '../thunks/userThunks';
 import { loadingManager } from '../actions/userActions';
 
 class LogIn extends React.Component {
@@ -22,6 +22,7 @@ class LogIn extends React.Component {
     event.preventDefault();
     this.props.loadingManager();
     this.props.loginUser(this.state);
+    this.props.loadingManager();
   }
 
   checkForErrors = (inputName) => {

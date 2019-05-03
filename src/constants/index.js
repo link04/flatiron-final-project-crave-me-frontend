@@ -8,5 +8,5 @@ export const HEADERS = {
 export const ATUTHORIZED_HEADERS = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  Authorization: `${localStorage.token}`
+  'Authorization': localStorage.token
 };

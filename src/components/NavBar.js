@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeUser } from '../actions/userActions';
+import UserOptionsTab from '../components/UserOptionsTab';
 
-import { Redirect, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Collapse,
@@ -63,7 +64,7 @@ class NavBar extends React.Component {
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem  className="link"  >
-                    <NavLink onClick={() => this.handleClickedLink('/')} >
+                    <NavLink onClick={() => this.handleClickedLink('/userprofile')} >
                         Profile
                     </NavLink>
                     </DropdownItem>
@@ -93,6 +94,11 @@ class NavBar extends React.Component {
               </Nav>
             </Collapse>
           </Navbar>
+          { Object.keys(this.props.user).length > 0 && !this.props.user.errors ?
+            <UserOptionsTab handleClickedLink={this.handleClickedLink} />
+            :
+            <br/>
+          }
         </div>
       );
     }

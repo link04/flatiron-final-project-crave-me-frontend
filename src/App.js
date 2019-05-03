@@ -3,13 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row } from 'reactstrap';
 
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
 
 import NavBar from './components/NavBar';
-import UserOptionsTab from './components/UserOptionsTab';
+import UserProfile from './components/UserProfile';
+
+import CraveContainer from './containers/CraveContainer';
+import ConversationsContainer from './containers/ConversationsContainer';
+import MatchesContainer from './containers/MatchesContainer';
 
 import { getUser } from './thunks/userThunks'
 import { loadingManager } from './actions/userActions';
@@ -18,26 +21,29 @@ import { getMenuChoices } from './thunks/menuChoiceThunks';
 class App extends React.Component {
 
   componentDidMount(){
+    this.props.loadingManager();
+
     this.props.loadMenuChoices();
     const location = this.props.history.location.pathname;
     const token = localStorage.token;
     if(token){
-      this.props.loadingManager();
-      this.props.getUser(token)
+      this.props.getUser(token);
     } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
     }
+    this.props.loadingManager();
+
+
   }
 
   render(){
-    console.log(this.props.loading);
 
     return (
       <div>
          <NavBar />
-
         {
-          <Switch>
+          <div className="tab-childs" sm="8" >
+            <Switch>
                <Route
                exact
                path="/signup"
@@ -48,10 +54,36 @@ class App extends React.Component {
                path="/login"
                render={() => <LogIn />}
                />
-            <Route exact path="/" render={() => <UserOptionsTab />} />
-          </Switch>
+               <Route
+               exact
+               path="/userprofile"
+               render={() => <UserProfile />}
+               />
+               <Route
+               exact
+               path="/conversations"
+               render={() => <ConversationsContainer />}
+               />
+               <Route
+               exact
+               path="/cravings"
+               render={() => <CraveContainer />}
+               />
+               <Route
+               exact
+               path="/matches"
+               render={() => <MatchesContainer />}
+               />
+               <Route
+               exact
+               path="/"
+               render={() => <MatchesContainer />}
+               />
+           </Switch>
+          </div>
+
          }
-        <div id="load-model" className="modal" hidden={!this.props.loading}></div>
+        <div  className="modal-load " hidden={!this.props.loading}></div>
       </div>
 
     );

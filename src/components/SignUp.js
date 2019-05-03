@@ -57,6 +57,7 @@ class SignUp extends React.Component {
         stateCopy.gender_id = parseInt(this.state.gender_id, 10);
         this.props.postUser(stateCopy);
       }
+    this.props.loadingManager();
   }
 
   checkForErrors = (title,inputName) => {
@@ -75,7 +76,6 @@ class SignUp extends React.Component {
 
     geoFindMe = (userId) => {
         const success = (position) =>  {
-          console.log(`${position.coords.latitude} ${position.coords.longitude}`);
           const coordinates = {
             coordinates: `${position.coords.latitude} ${position.coords.longitude}`
           }

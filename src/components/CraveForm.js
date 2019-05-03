@@ -66,7 +66,7 @@ class CraveForm extends React.Component {
               </p>
               <p><label htmlFor="other">Other not included crave?</label>
               <br/>
-               <input required onChange={this.handleInputChange} name="other" id="other" value={this.state.other} name="other" placeholder="Text Input" type="text"/></p>
+               <input required onChange={this.handleInputChange} name="other" id="other" value={this.state.other} placeholder="Text Input" type="text"/></p>
             <input type="submit" value="Start Craving"/>
             </fieldset>
           </form>

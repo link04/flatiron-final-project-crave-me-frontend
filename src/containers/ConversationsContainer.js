@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 class ConversationsContainer extends React.Component {
