@@ -6,10 +6,24 @@ import { API_ROOT, ATUTHORIZED_HEADERS  } from '../constants/';
 
 import {connect} from 'react-redux';
 
+import { getUserConversations } from '../thunks/conversationThunks'
+
 class ConversationsList extends React.Component {
   state = {
-    activeConversation: null
+    activeConversation: null,
+    loadedConversations: false
   };
+
+// if any error arrives, this mmust be verified
+  componentDidUpdate(){
+    if(this.state.loadedConversations === false){
+      this.props.getUserConversations(this.props.user.id)
+      this.setState({
+        loadedConversations: true
+      })
+    }
+  }
+
 
   handleClick = id => {
     this.setState({ activeConversation: id });
@@ -33,22 +47,22 @@ class ConversationsList extends React.Component {
   };
 
   render () {
-      console.log(this.props.user.conversations);
+
     return (
-      <div className="conversationsList">
+          <div className="conversationsList">
         <ActionCableConsumer
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
         />
         {Object.keys(this.props.user).length ? (
           <Cable
-            conversations={this.props.user.conversations}
+            conversations={this.props.conversations}
             handleReceivedMessage={this.handleReceivedMessage}
           />
         ) : null}
         <h2>Conversations</h2>
-          { this.props.user.conversations ?
-            <ul>{mapConversations(this.props.user.conversations, this.handleClick)}</ul>
+          { this.props.conversations ?
+            <ul>{mapConversations(this.props.conversations, this.handleClick)}</ul>
             :
             null
           }
@@ -57,23 +71,30 @@ class ConversationsList extends React.Component {
           <MessagesArea
             userId={this.props.user.id}
             conversation={findActiveConversation(
-              this.props.user.conversations,
+              this.props.conversations,
               this.state.activeConversation
             )}
           />
         ) : null}
       </div>
+
     );
   };
 }
 
 const mapStateToProps = state => {
-  return { user: state.userReducer.user }
+  return {
+    user: state.userReducer.user,
+    conversations : state.conversationReducer.conversations
+   }
 }
+const mapDispatchToProps = dispatch => ({
+  getUserConversations: (userId) => dispatch(getUserConversations(userId))
+})
 
-export default connect(mapStateToProps)(ConversationsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ConversationsList);
 
-// helpers
+// helpers-========
 
 const findActiveConversation = (conversations, activeConversation) => {
   return conversations.find(

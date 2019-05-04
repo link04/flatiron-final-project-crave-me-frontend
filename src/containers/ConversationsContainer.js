@@ -5,16 +5,11 @@ import ConversationsList from '../components/ConversationsList.js';
 
 class ConversationsContainer extends React.Component {
 
-
-
-
   render(){
-
     return(
       <div  style={{maxHeight:'68vh', overflow:'auto'}} >
-      
-        <ConversationsList  />
 
+        <ConversationsList userId={this.props.user.id} />
 
       </div>
     )

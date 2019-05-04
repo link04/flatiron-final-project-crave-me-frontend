@@ -1,5 +1,5 @@
 import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants/index.js';
-import { createUser, updateUser, setUserMatches} from '../actions/userActions';
+import { createUser, updateUser, setUserMatches } from '../actions/userActions';
 
 export const postUser = (user) => (dispatch) => {
   const userData = new FormData();

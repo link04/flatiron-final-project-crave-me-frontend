@@ -10,7 +10,9 @@ import thunk from 'redux-thunk'
 import userReducer from './reducers/userReducer.js';
 import genderReducer from './reducers/genderReducer.js';
 import menuChoiceReducer from './reducers/menuChoiceReducer.js';
-import craveReducer from './reducers/menuChoiceReducer.js';
+import craveReducer from './reducers/craveReducer.js';
+import conversationReducer from './reducers/conversationReducer.js';
+
 
 import { ActionCableProvider } from 'react-actioncable-provider';
 import { API_WS_ROOT } from './constants';
@@ -23,7 +25,8 @@ const rootReducer = combineReducers({
   userReducer,
   genderReducer,
   menuChoiceReducer,
-  craveReducer
+  craveReducer,
+  conversationReducer
 })
 
 const store  = createStore(rootReducer, applyMiddleware(thunk));

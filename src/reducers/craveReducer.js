@@ -12,7 +12,7 @@ const reducer = (craveState = initialCraveState, action) => {
     case 'REMOVE_CRAVE':
       return {...craveState, user: {}}
     default:
-    return userState
+    return craveState
   }
 
 }
