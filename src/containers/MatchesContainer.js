@@ -12,7 +12,7 @@ class MatchesContainer extends React.Component {
 
     return(
       <div className="text-center" >
-        <div className="text-center" style={{maxHeight:'75vh', overflow:'auto'}} >
+        <div className="text-center" style={{maxHeight:'68vh', overflow:'auto'}} >
           <MatchList />
         </div>
         <Button className="m-2" style={{backgroundColor: '#85a2b6'}} onClick={() => this.props.getUserMatches(this.props.user.id)}>Refresh Matches</Button>

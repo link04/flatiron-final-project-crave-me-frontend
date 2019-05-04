@@ -1,14 +1,21 @@
 import React from 'react';
 import { withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import ConversationsList from '../components/ConversationsList.js';
 
 class ConversationsContainer extends React.Component {
+
+
+
 
   render(){
 
     return(
-      <div>
-        conversations
+      <div  style={{maxHeight:'68vh', overflow:'auto'}} >
+      
+        <ConversationsList  />
+
+
       </div>
     )
   }
