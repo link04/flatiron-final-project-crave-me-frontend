@@ -1,15 +1,23 @@
 import React, { Fragment } from 'react';
-import { ActionCableConsumer } from 'react-actioncable-provider';
+import { ActionCable } from 'react-actioncable-provider';
+import {connect} from 'react-redux';
 
-const Cable = ({ conversations, handleReceivedMessage }) => {
+import { getUserConversations } from '../thunks/conversationThunks';
+import { updateConversationMessages, updateConversations } from '../actions/conversationActions';
+
+
+const Cable = (props) => {
+
+
   return (
+
     <Fragment>
-      {conversations.map(conversation => {
+      {props.conversations.map(conversation => {
         return (
-          <ActionCableConsumer
-            key={'conversation-'+conversation.id}
+          <ActionCable
+            key={conversation.id}
             channel={{ channel: 'MessagesChannel', conversation: conversation.id }}
-            onReceived={handleReceivedMessage}
+            onReceived={(resp) => props.handleReceivedMessage(resp)}
           />
         );
       })}
@@ -17,4 +25,15 @@ const Cable = ({ conversations, handleReceivedMessage }) => {
   );
 };
 
-export default Cable;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+   }
+}
+const mapDispatchToProps = dispatch => ({
+  getUserConversations: (userId) => dispatch(getUserConversations(userId)),
+  updateConversationMessages: (message) => dispatch(updateConversationMessages(message)),
+  updateConversations: (conversation) => dispatch(updateConversations(conversation))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cable);

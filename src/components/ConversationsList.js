@@ -1,30 +1,30 @@
 import React from 'react';
-import { ActionCableConsumer } from 'react-actioncable-provider';
+import { ActionCable } from 'react-actioncable-provider';
+import { API_ROOT } from '../constants';
+// import NewConversationForm from './NewConversationForm';
 import MessagesArea from './MessagesArea';
 import Cable from './Cable';
-import { API_ROOT, ATUTHORIZED_HEADERS  } from '../constants/';
 
 import {connect} from 'react-redux';
 
-import { getUserConversations } from '../thunks/conversationThunks'
+import { getUserConversations } from '../thunks/conversationThunks';
+import { updateConversationMessages, updateConversations } from '../actions/conversationActions';
+
 
 class ConversationsList extends React.Component {
   state = {
+    conversations: this.props.conversations,
     activeConversation: null,
-    loadedConversations: false
+    user:this.props.user
   };
+  //
+  // componentWillReceiveProps(nextProps) {
+  //   if(nextProps.user !==  this.props.user){
+  //     this.props.getUserConversations(nextProps.user.id)
+  //   }
+  // }
 
-// if any error arrives, this mmust be verified
-  componentDidUpdate(){
-    if(this.state.loadedConversations === false){
-      this.props.getUserConversations(this.props.user.id)
-      this.setState({
-        loadedConversations: true
-      })
-    }
-  }
-
-
+  
   handleClick = id => {
     this.setState({ activeConversation: id });
   };
@@ -46,38 +46,36 @@ class ConversationsList extends React.Component {
     this.setState({ conversations });
   };
 
-  render () {
+  render = () => {
+    // console.log(' reload' ,this.state);
+    // console.log(' reload' ,this.props);
+    //
+    console.log(' clikcout' ,this.state);
+    console.log(' clikcout' ,this.props);
+
+    const conversations = this.props.conversations;
+    const activeConversation = this.state.activeConversation;
 
     return (
-          <div className="conversationsList">
-        <ActionCableConsumer
+      <div className="conversationsList">
+        <ActionCable
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
         />
-        {Object.keys(this.props.user).length ? (
-          <Cable
-            conversations={this.props.conversations}
-            handleReceivedMessage={this.handleReceivedMessage}
-          />
+        {this.state.conversations.length ? (
+          <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage} />
         ) : null}
         <h2>Conversations</h2>
-          { this.props.conversations ?
-            <ul>{mapConversations(this.props.conversations, this.handleClick)}</ul>
-            :
-            null
-          }
-
-        { this.state.activeConversation ? (
+        <ul>{mapConversations(conversations, this.handleClick)}</ul>
+        {activeConversation ? (
           <MessagesArea
-            userId={this.props.user.id}
             conversation={findActiveConversation(
-              this.props.conversations,
-              this.state.activeConversation
+              conversations,
+              activeConversation
             )}
           />
         ) : null}
       </div>
-
     );
   };
 }
@@ -85,16 +83,19 @@ class ConversationsList extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    conversations : state.conversationReducer.conversations
+    conversations: state.conversationReducer.conversations
    }
 }
+
 const mapDispatchToProps = dispatch => ({
-  getUserConversations: (userId) => dispatch(getUserConversations(userId))
+  getUserConversations: (userId) => dispatch(getUserConversations(userId)),
+  updateConversationMessages: (message) => dispatch(updateConversationMessages(message)),
+  updateConversations: (conversation) => dispatch(updateConversations(conversation))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConversationsList);
 
-// helpers-========
+// helpers
 
 const findActiveConversation = (conversations, activeConversation) => {
   return conversations.find(
@@ -103,15 +104,11 @@ const findActiveConversation = (conversations, activeConversation) => {
 };
 
 const mapConversations = (conversations, handleClick) => {
-
   return conversations.map(conversation => {
     return (
-      <li key={'conversation-' + conversation.id  } onClick={() => handleClick(conversation.id)}>
-
-        {conversation.users}
-
+      <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
+        {conversation.title}
       </li>
     );
   });
-
 };

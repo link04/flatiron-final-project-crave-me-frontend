@@ -17,8 +17,13 @@ import MatchesContainer from './containers/MatchesContainer';
 import { getUser } from './thunks/userThunks'
 import { loadingManager } from './actions/userActions';
 import { getMenuChoices } from './thunks/menuChoiceThunks';
+import { getUserConversations } from './thunks/conversationThunks';
 
 class App extends React.Component {
+
+  state = {
+    user: this.props.user
+  }
 
   componentDidMount(){
     this.props.loadingManager();
@@ -29,12 +34,22 @@ class App extends React.Component {
     const token = localStorage.token;
     if(token){
       this.props.getUser(token);
+      this.props.history.push('/matches');
+
     } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
     }
 
     this.props.loadingManager();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.user !==  this.props.user){
+      this.props.getUserConversations(nextProps.user.id)
+    }
+  }
+
+
 
   render(){
 
@@ -62,7 +77,7 @@ class App extends React.Component {
                <Route
                exact
                path="/conversations"
-               render={() => <ConversationsContainer />}
+               render={() => <ConversationsContainer user={this.props.user} />}
                />
                <Route
                exact
@@ -93,14 +108,16 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    loading: state.userReducer.loading
+    loading: state.userReducer.loading,
+    conversations: state.conversationReducer.conversations,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   getUser: (token) => dispatch(getUser(token)),
   loadingManager: () =>  dispatch(loadingManager()),
-  loadMenuChoices: () => dispatch(getMenuChoices())
+  loadMenuChoices: () => dispatch(getMenuChoices()),
+  getUserConversations: (userId) => dispatch(getUserConversations(userId)),
 })
 
 

@@ -1,5 +1,6 @@
 import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants/index.js';
 import { createUser, updateUser, setUserMatches } from '../actions/userActions';
+import { loadConversations, updateConversations, updateConversationMessages } from '../actions/conversationActions';
 
 export const postUser = (user) => (dispatch) => {
   const userData = new FormData();
@@ -43,6 +44,8 @@ export const loginUser = (userCredentials) => (dispatch) => {
     if(parsedResponse.user){
       localStorage.setItem("token", parsedResponse.jwt)
       dispatch(createUser(parsedResponse.user))
+      dispatch(loadConversations(parsedResponse.user.id))
+
     } else {
       dispatch(createUser({errors:parsedResponse.errors}))
     }

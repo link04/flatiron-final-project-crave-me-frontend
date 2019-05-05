@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
 import ConversationsList from '../components/ConversationsList.js';
 
 class ConversationsContainer extends React.Component {
@@ -9,7 +8,7 @@ class ConversationsContainer extends React.Component {
     return(
       <div  style={{maxHeight:'68vh', overflow:'auto'}} >
 
-        <ConversationsList userId={this.props.user.id} />
+        <ConversationsList user={this.props.user} />
 
       </div>
     )
@@ -20,4 +19,4 @@ const mapStateToProps = state => {
   return {user : state.userReducer.user}
 }
 
-export default withRouter(connect(mapStateToProps)(ConversationsContainer)) ;
+export default ConversationsContainer;

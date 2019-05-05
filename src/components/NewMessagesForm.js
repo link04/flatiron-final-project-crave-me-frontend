@@ -1,6 +1,7 @@
 import React from 'react';
 import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants';
 import {connect} from 'react-redux';
+import { postMessage } from '../thunks/conversationThunks'
 
 class NewMessageForm extends React.Component {
   state = {
@@ -10,7 +11,7 @@ class NewMessageForm extends React.Component {
   };
 
   componentWillReceiveProps = nextProps => {
-    this.setState({ conversation_id: nextProps.conversation_id, user_id: nextProps.user_id,});
+    this.setState({ conversation_id: nextProps.conversation_id, user_id: nextProps.user_id });
   };
 
   handleChange = e => {
@@ -19,12 +20,7 @@ class NewMessageForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    fetch(`${API_ROOT}/messages`, {
-      method: 'POST',
-      headers: ATUTHORIZED_HEADERS,
-      body: JSON.stringify({message:this.state})
-    });
+    this.props.postMessage(this.state)
     this.setState({ text: '' });
   };
 
@@ -50,4 +46,8 @@ const mapStateToProps = state => {
   return { user: state.userReducer.user }
 }
 
-export default connect(mapStateToProps)(NewMessageForm);
+const mapDispatchToProps = dispatch => ({
+  postMessage: (message) => dispatch(postMessage(message))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewMessageForm);

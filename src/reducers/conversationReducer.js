@@ -12,6 +12,7 @@ const reducer = (conversationsState = initialConversationsState, action) => {
     case 'UPDATE_CONVERSATIONS':
       return {...conversationsState, conversations: [ ...conversationsState.conversations, action.payload] }
     case 'UPDATE_CONVERSATION_MESSAGES':
+    console.log('here');
       const conversationsCopy = [...conversationsState.conversations ]
       const conversationCopy = conversationsCopy.find(conversation => conversation.id === action.payload.conversation_id)
       conversationCopy.messages = [...conversationCopy.messages, action.payload]
