@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
@@ -19,6 +17,9 @@ import { loadingManager } from './actions/userActions';
 import { getMenuChoices } from './thunks/menuChoiceThunks';
 import { getUserConversations } from './thunks/conversationThunks';
 
+import { Route, Switch, withRouter } from 'react-router-dom';
+
+
 class App extends React.Component {
 
   state = {
@@ -34,7 +35,7 @@ class App extends React.Component {
     const token = localStorage.token;
     if(token){
       this.props.getUser(token);
-      this.props.history.push('/matches');
+      // this.props.history.push('/matches');
 
     } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
@@ -55,6 +56,7 @@ class App extends React.Component {
 
     return (
       <div>
+
          <NavBar />
         {
           <div className="tab-childs" sm="8" >

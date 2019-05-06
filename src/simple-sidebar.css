@@ -1,0 +1,61 @@
+
+#wrapper {
+  overflow: hidden;
+}
+
+#sidebar-wrapper {
+  margin-left: -30rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 67vh;
+  width: 30rem;
+
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.1rem;
+}
+
+
+#page-content-wrapper{
+  width:100%;
+
+}
+
+#navbar-with-option {
+  overflow: hidden;
+  top: 0;
+}
+
+#page-content-wrapper .container-fluid {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 61vh;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+
+  }
+
+  #page-content-wrapper .container-fluid {
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 61vh;
+  }
+
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -30rem;
+  }
+}

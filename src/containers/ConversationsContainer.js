@@ -7,7 +7,7 @@ class ConversationsContainer extends React.Component {
   render(){
     return(
       <div >
-        <div className="text-center" style={{height:'68vh'}}>
+        <div style={{height:'68vh'}}>
           <ConversationsList  />
         </div>
 
