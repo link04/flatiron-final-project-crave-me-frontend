@@ -77,7 +77,7 @@ class App extends React.Component {
                <Route
                exact
                path="/conversations"
-               render={() => <ConversationsContainer user={this.props.user} />}
+               render={() => <ConversationsContainer />}
                />
                <Route
                exact

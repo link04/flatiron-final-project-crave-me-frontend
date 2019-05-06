@@ -1,7 +1,10 @@
 import React from 'react';
 import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants';
 import {connect} from 'react-redux';
-import { postMessage } from '../thunks/conversationThunks'
+import { postMessage } from '../thunks/conversationThunks';
+
+import { InputGroup, InputGroupText, InputGroupAddon, Input, Button } from 'reactstrap';
+
 
 class NewMessageForm extends React.Component {
   state = {
@@ -24,20 +27,26 @@ class NewMessageForm extends React.Component {
     this.setState({ text: '' });
   };
 
+  // <input
+  //   type="text"
+  //   value={this.state.text}
+  //   onChange={this.handleChange}
+  // />
+  // <input type="submit" />
+
   render = () => {
     return (
-      <div className="newMessageForm">
-        <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
-          <br />
-          <input
-            type="text"
-            value={this.state.text}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit} style={{position: 'absolute', minWidth:'94%', bottom: '0px'}} >
+          <InputGroup>
+            <Input
+             type="text"
+             value={this.state.text}
+             onChange={this.handleChange} />
+             <InputGroupAddon addonType="append">
+               <Button style={{width:'100px', paddingRight:'20px'}}  className="">Send</Button>
+             </InputGroupAddon>
+           </InputGroup>
+      </form>
     );
   };
 }

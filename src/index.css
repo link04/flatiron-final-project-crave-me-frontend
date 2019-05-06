@@ -122,3 +122,21 @@ ul li.nav-item  {
     -webkit-border-radius: 500px;
     -moz-border-radius: 500px;
 }
+
+
+
+
+#side-nav {
+  position: fixed;
+  width: 250px;
+  height:100vh;
+  overflow-y: scroll;
+  background-color: red;
+}
+
+#content-wrapper {
+  margin: 0 0 0 250px;
+  padding: 0 30px;
+  overflow-y: scroll;
+  background-color: blue;
+}

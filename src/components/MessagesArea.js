@@ -1,14 +1,34 @@
 import React from 'react';
 import NewMessagesForm from './NewMessagesForm';
 
-const MessagesArea = (props) => {
+class MessagesArea extends React.Component {
+
+    scrollToBottom = () => {
+      this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
+    componentDidMount() {
+      this.scrollToBottom();
+    }
+
+    componentDidUpdate() {
+      this.scrollToBottom();
+    }
+  render(){
   return (
-    <div className="messagesArea">
-      <h2>{}</h2>
-      <ul>{orderedMessages(props.conversation.messages)}</ul>
-      <NewMessagesForm user_id={props.userId} conversation_id={props.conversation.id} />
-    </div>
+    <>
+      <div style={{height:'100%', overflow:'auto'}} >
+        <h2>{}</h2>
+        <ul>{orderedMessages(this.props.conversation.messages)}</ul>
+          <div style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}>
+           </div>
+      </div>
+      <NewMessagesForm user_id={this.props.userId} conversation_id={this.props.conversation.id} />
+
+    </>
   );
+}
 };
 
 export default MessagesArea;

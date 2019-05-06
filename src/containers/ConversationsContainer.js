@@ -6,17 +6,14 @@ class ConversationsContainer extends React.Component {
 
   render(){
     return(
-      <div  style={{maxHeight:'68vh', overflow:'auto'}} >
-
-        <ConversationsList user={this.props.user} />
+      <div >
+        <div className="text-center" style={{height:'68vh'}}>
+          <ConversationsList  />
+        </div>
 
       </div>
     )
   }
-}
-
-const mapStateToProps = state => {
-  return {user : state.userReducer.user}
 }
 
 export default ConversationsContainer;
