@@ -24,7 +24,6 @@
 
 #page-content-wrapper{
   width:100%;
-
 }
 
 #navbar-with-option {
@@ -35,7 +34,7 @@
 #page-content-wrapper .container-fluid {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 61vh;
+    height: 52vh;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -51,7 +50,7 @@
   #page-content-wrapper .container-fluid {
       overflow-y: auto;
       overflow-x: hidden;
-      height: 61vh;
+        height: 52vh;
   }
 
 

@@ -13,7 +13,7 @@ import { updateConversationMessages, updateConversations } from '../actions/conv
 
 // import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import '../simple-sidebar.css';
-
+import '../conversation-messages.css';
 
 class ConversationsList extends React.Component {
   state = {
@@ -65,32 +65,36 @@ class ConversationsList extends React.Component {
     const activeConversation = this.state.activeConversation;
 
     return (
+
       <div  className={this.state.toggled ? 'd-flex toggled' : 'd-flex' }   id="wrapper">
 
         <div className="bg-light border-right" id="sidebar-wrapper">
           <div className="sidebar-heading"><FontAwesome name='heart' />Matched</div>
-          <div className="list-group list-group-flush"   >
-            <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+          <div className="list-group list-group-flush">
+            <div className="chat_list active_chat">
+              <div className="chat_people">
+                <div className="chat_img">
+                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
+              </div>
+                <div className="chat_ib">
+                  <h5>Sunil Rajput<span className="chat_date">Dec 25</span> </h5>
+                </div>
+              </div>
+            </div>
+            <div className="chat_list ">
+              <div className="chat_people">
+                <div className="chat_img">
+                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
+              </div>
+                <div className="chat_ib">
+                  <h5>Sunil Rajput<span className="chat_date">Dec 25</span> </h5>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-       <div id="page-content-wrapper">
+
+       <div id="page-content-wrapper"  >
          <nav id='navbar-with-option' className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
            <button className="btn btn-primary" onClick={this.toggle} id="menu-toggle">
              {this.state.toggled ?
@@ -101,19 +105,40 @@ class ConversationsList extends React.Component {
             </button>
          </nav>
 
-         <div className="container-fluid"  >
-           <h1 className="mt-4">Simple Sidebar</h1>
-          <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-          <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-          <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-          <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-          <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-          <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-       </div>
-   </div>
+         <div className="container-fluid p-2 " hidden={this.state.toggled } >
+           <div className="incoming_msg">
+             <div className="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> </div>
+             <div className="received_msg">
+               <div className="received_withd_msg">
+                 <p>Test which is a new approach to have all
+                   solutions</p>
+                 <span className="time_date"> 11:01 AM    |    June 9</span></div>
+             </div>
+           </div>
+           <div className="outgoing_msg">
+             <div className="sent_msg">
+               <p>Test which is a new approach to have all
+                 solutions</p>
+               <span className="time_date"> 11:01 AM    |    June 9</span> </div>
+           </div>
 
-  {
-    /*
+
+         </div>
+
+        <div className="type_msg m-2" hidden={this.state.toggled } >
+          <div className="input_msg_write">
+            <input type="text" className="write_msg" placeholder="Type a message" />
+            <button className="msg_send_btn" type="button">
+              <FontAwesome name='paper-plane' aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+{
+        /*
+      }
     <ActionCable channel={{ channel: 'ConversationsChannel' }} onReceived={this.handleReceivedConversation} />
     {this.state.conversations.length ? (
       <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage} />
