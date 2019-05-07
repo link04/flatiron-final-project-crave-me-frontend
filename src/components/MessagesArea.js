@@ -32,12 +32,12 @@ class MessagesArea extends React.Component {
     <nav id='navbar-with-option' className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <button className="pull-left" onClick={this.props.toggle} id="menu-toggle">
         {this.props.toggled ?
-          <FontAwesome name='comments' />
+          <FontAwesome name='arrow-circle-left' />
           :
-          <FontAwesome name='inbox'  />
+          <FontAwesome name='comments'  />
         }
        </button>
-       <h5>{conversationDifferentUser.full_name}<img class="message-window-avatar" src={conversationDifferentUser.image_url} alt={conversationDifferentUser.full_name} /></h5>
+       <h5>{conversationDifferentUser.full_name.split(' ')[0]} <img className="message-window-avatar" src={conversationDifferentUser.image_url} alt={conversationDifferentUser.full_name} /></h5>
 
 
     </nav>

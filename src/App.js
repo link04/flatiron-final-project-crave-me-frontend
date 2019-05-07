@@ -13,7 +13,7 @@ import ConversationsContainer from './containers/ConversationsContainer';
 import MatchesContainer from './containers/MatchesContainer';
 
 import { getUser } from './thunks/userThunks'
-import { loadingManager } from './actions/userActions';
+import { loadingManager, removeUser } from './actions/userActions';
 import { getMenuChoices } from './thunks/menuChoiceThunks';
 import { getUserConversations } from './thunks/conversationThunks';
 
@@ -35,7 +35,7 @@ class App extends React.Component {
     const token = localStorage.token;
     if(token){
       this.props.getUser(token);
-      this.props.history.push('/matches');
+      // this.props.history.push('/matches');
     } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
     }
@@ -44,9 +44,17 @@ class App extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.user !==  this.props.user){
-      this.props.getUserConversations(nextProps.user.id)
-    }
+
+      if (Object.keys(nextProps.user).length > 1) {
+        if(nextProps.user !==  this.props.user ){
+          this.props.getUserConversations(nextProps.user.id)
+        }
+      }
+
+  }
+  //  Cleaning user object of errors before going to login or signup
+  handleRedirectClick = () => {
+    this.props.userLogOut();
   }
 
   render(){
@@ -61,12 +69,12 @@ class App extends React.Component {
                <Route
                exact
                path="/signup"
-               render={() => <SignUp />}
+               render={() => <SignUp handleRedirectClick={this.handleRedirectClick} />}
                />
                <Route
                exact
                path="/login"
-               render={() => <LogIn />}
+               render={() => <LogIn handleRedirectClick={this.handleRedirectClick} />}
                />
                <Route
                exact
@@ -117,7 +125,8 @@ const mapDispatchToProps = dispatch => ({
   loadingManager: () =>  dispatch(loadingManager()),
   loadMenuChoices: () => dispatch(getMenuChoices()),
   getUserConversations: (userId) => dispatch(getUserConversations(userId)),
-})
+  userLogOut: () => dispatch(removeUser())
 
+})
 
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));

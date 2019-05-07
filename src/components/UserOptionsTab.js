@@ -37,8 +37,7 @@ class UserOptionsTab  extends React.Component{
                 this.props.handleClickedLink('matches')
               }}
             >
-            Matches
-              <FontAwesome name='users'/>
+            Matches <FontAwesome name='users'/>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -49,8 +48,7 @@ class UserOptionsTab  extends React.Component{
                 this.props.handleClickedLink('conversations')
               }}
             >
-            Conversations
-            <FontAwesome name='comments'  />
+            Conversations <FontAwesome name='comments'  />
             </NavLink>
           </NavItem>
           <NavItem>
@@ -60,8 +58,7 @@ class UserOptionsTab  extends React.Component{
               this.props.handleClickedLink('cravings')
               }}
             >
-              Craves
-                <FontAwesome name='cutlery'  />
+              Craves <FontAwesome name='cutlery'  />
             </NavLink>
           </NavItem>
         </Nav>

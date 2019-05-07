@@ -7,7 +7,6 @@ const reducer = (craveState = initialCraveState, action) => {
 
   switch (action.type) {
     case 'SET_CRAVE':
-    console.log('first set',action);
       return {...craveState, crave: action.payload}
     case 'REMOVE_CRAVE':
       return {...craveState, user: {}}

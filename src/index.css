@@ -90,6 +90,11 @@ ul#tab-options li {
 
 ul li.nav-item  {
   cursor: pointer;
+  font-size: 18px;
+}
+
+ul li.nav-item a {
+  padding: 5px;
 }
 /*  Select style for size */
 .select{
@@ -124,9 +129,6 @@ ul li.nav-item  {
     -moz-border-radius: 500px;
 }
 
-
-
-
 #side-nav {
   position: fixed;
   width: 250px;
@@ -140,4 +142,19 @@ ul li.nav-item  {
   padding: 0 30px;
   overflow-y: scroll;
   background-color: blue;
+}
+
+/*  Form ul styling*/
+
+.interest-genders-ul {
+  display: inline-flex;
+  text-decoration: none;
+  list-style-type: none;
+  margin-bottom:0px ;
+  padding-left: 0px;
+}
+
+.interest-genders-ul li {
+  margin:5px;
+
 }

@@ -34,7 +34,7 @@ const MatchList = (props) => {
           :
           <>
             <h4>You Have No New Matches Yet</h4>
-            <h6>Did you craved, already?</h6>
+            <h6>Have you Craved, already?</h6>
           </>
         }
       </div>

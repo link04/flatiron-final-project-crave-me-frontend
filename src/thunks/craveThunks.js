@@ -15,7 +15,6 @@ export const postCrave = (craveData) => (dispatch) => {
     if(parsedResponse.crave){
       dispatch(setUserCrave(parsedResponse.crave, parsedResponse.active_matches))
     } else {
-      debugger
       parsedResponse.errors.forEach(error => {
         alert(error)
       })

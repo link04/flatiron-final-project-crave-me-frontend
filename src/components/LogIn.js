@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import {withRouter, Link, Redirect} from 'react-router-dom';
 
 import { loginUser } from '../thunks/userThunks';
-import { loadingManager } from '../actions/userActions';
+import { loadingManager, removeUser } from '../actions/userActions';
+
+import { Row, Col, Form, FormGroup, Label, Input, FormFeedback, FormText, Button} from 'reactstrap';
+import FontAwesome from 'react-fontawesome';
 
 class LogIn extends React.Component {
 
@@ -30,7 +33,7 @@ class LogIn extends React.Component {
     if (!!this.props.user && this.props.user.errors){
       if(!!this.props.user.errors[inputName]){
         errors = this.props.user.errors[inputName].map((error, index) => {
-         return <li key={index}>{error}</li>;
+         return <FormFeedback key={index} >{error}</FormFeedback>;
        })
       }
     }
@@ -41,27 +44,34 @@ class LogIn extends React.Component {
   render(){
 
     return(
-      <div className="container" >
-        <form onSubmit={this.handleSubmit} >
+      <div style={{width:'70vw'}} className="mx-auto text-center p-2 m-2" >
+        <legend>Welcome To CraveMe</legend>
+        <h5>Log In</h5>
+        <Form onSubmit={this.handleSubmit} >
             { this.props.user.email ?
                <Redirect to='/'  />
                :
                null
             }
-          <fieldset>
-            <legend>Welcome To CraveMe</legend>
-            <h4>Log In</h4>
-            <p><label htmlFor="email">Email Address</label> <input required onChange={this.handleChange} name="email" value={this.state.email} placeholder=" e.g. name@email.com" type="email"/></p>
-            <p><label htmlFor="password">Password</label> <input required onChange={this.handleChange} name="password" value={this.state.password} placeholder="Type Password" type="password"/></p>
-              <ul>
-                {this.checkForErrors('password')}
-              </ul>
-           <input type="submit" value="Log In" />
-           <p>Lacking an account?<Link to={`/signup`} className="active"> Sing Up</Link></p>
-          </fieldset>
-        </form>
-      </div>
+          <Row form>
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
+              <FormGroup>
+               <Input invalid={!!this.checkForErrors('password')} required onChange={this.handleChange} name="email" value={this.state.email} placeholder="Email: e.g. name@email.com" type="email" />
+                   {this.checkForErrors('password')}
+             </FormGroup>
+             <FormGroup>
+              <Input invalid={!!this.checkForErrors('password')} required onChange={this.handleChange} name="password" value={this.state.password} placeholder="Password" type="password" />
+                  {this.checkForErrors('password')}
+            </FormGroup>
+            <Button type="submit" className="m-2" color="primary">
+              Log In <FontAwesome name="sign-in" />
+            </Button>
+            <p>Need an account?<Link to={`/signup`} onClick={this.props.handleRedirectClick} className="active"> Sign Up</Link></p>
+           </Col>
+         </Row>
 
+        </Form>
+      </div>
     )
   };
 };
@@ -72,7 +82,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadingManager: () => dispatch(loadingManager()),
-  loginUser: (user) => dispatch(loginUser(user))
+  loginUser: (user) => dispatch(loginUser(user)),
+  cleanUserObject: () => dispatch(removeUser())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LogIn));

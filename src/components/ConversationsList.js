@@ -70,8 +70,6 @@ class ConversationsList extends React.Component {
       });
     }
 
-
-
   render = () => {
 
     const conversations = this.props.conversations;
@@ -79,7 +77,7 @@ class ConversationsList extends React.Component {
 
     return (
 
-      <div  className={this.state.toggled ? 'd-flex ' : 'd-flex toggled' }    id="wrapper">
+      <div  className={this.state.toggled ? 'd-flex ' : 'd-flex toggled' } id="wrapper">
 
         <ActionCable channel={{ channel: 'ConversationsChannel' }} onReceived={this.handleReceivedConversation} />
         {this.state.conversations.length ? (
@@ -87,7 +85,7 @@ class ConversationsList extends React.Component {
         ) : null}
 
         <div className="bg-light border-right" id="sidebar-wrapper">
-          <div className="sidebar-heading">Conversations<FontAwesome name='heart' /></div>
+          <div className="sidebar-heading ">Conversations <FontAwesome name='comments' /></div>
           <div className="list-group list-group-flush">
             {mapConversations(conversations, this.handleClick, this.props.user.id, this.state.activeConversation)}
           </div>

@@ -42,15 +42,21 @@ class NavBar extends React.Component {
       }
     }
 
+
     handleClickedLink = (location) => {
-      this.props.history.push(location);
+      if(location === '/login' || location === '/signup'){
+        this.props.userLogOut();
+        this.props.history.push(location);
+      } else  {
+        this.props.history.push(location);
+      }
     }
 
     render() {
       return (
         <div>
           <Navbar style={{backgroundColor:"#dce4eb"}} light expand="md">
-            <NavbarBrand className="link" onClick={() => this.handleClickedLink('/cravecontainer')} >
+            <NavbarBrand >
                 CraveMe
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />

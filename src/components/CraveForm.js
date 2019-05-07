@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-// import { getMenuChoices } from '../actions/menuChoiceActions';
-// import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { postCrave } from '../thunks/craveThunks';
+import { Row, Col, Form, FormGroup, Label, Input, InputGroupAddon, InputGroup, FormFeedback, FormText, Button} from 'reactstrap';
+
+import FontAwesome from 'react-fontawesome';
 
 class CraveForm extends React.Component {
 
@@ -39,37 +40,68 @@ class CraveForm extends React.Component {
   render(){
 
     return(
-      <div className="text-center p-4">
+      <div className="text-center p-4"  >
         <h5>Create Crave</h5>
-          <form onSubmit={this.handleSubmit} >
-            <fieldset id="forms__input">
-              <p><label htmlFor="main_course">Main Course: </label>
-              <br/>
-                <select id="main_course" name="main_course_id" onChange={this.handleInputChange} required>
-                  <option value='' >Choose Main Course</option>
-                  {this.menuChoicesFilterAndMapper('main_course')}
-                </select>
-              </p>
-              <p><label htmlFor="dessert">Dessert: </label>
-              <br/>
-                <select id="dessert" name="dessert_id" onChange={this.handleInputChange} required>
-                  <option value='' >Choose Dessert</option>
-                  {this.menuChoicesFilterAndMapper('dessert')}
-                </select>
-              </p>
-              <p><label htmlFor="drink_id">Drink: </label>
-              <br/>
-                <select id="drink" name="drink_id" onChange={this.handleInputChange} required>
-                  <option value='' >Choose Drink</option>
-                  {this.menuChoicesFilterAndMapper('drink')}
-                </select>
-              </p>
-              <p><label htmlFor="other">Other not included crave?</label>
-              <br/>
-               <input required onChange={this.handleInputChange} name="other" id="other" value={this.state.other} placeholder="Text Input" type="text"/></p>
-            <input type="submit" value="Start Craving"/>
-            </fieldset>
-          </form>
+          <Form onSubmit={this.handleSubmit} >
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <label htmlFor="main_course">Main Course: </label>
+                  <br/>
+                    <Input type="select" id="main_course" name="main_course_id" onChange={this.handleInputChange} required>
+                      <option value='' >Select Main Course</option>
+                      {this.menuChoicesFilterAndMapper('main_course')}
+                    </Input>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <label htmlFor="main_course">Dessert: </label>
+                  <br/>
+                    <Input type="select" id="dessert" name="dessert_id" onChange={this.handleInputChange} required>
+                      <option value='' >Choose Dessert</option>
+                      {this.menuChoicesFilterAndMapper('dessert')}
+                    </Input>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <label htmlFor="drink_id">Drink: </label>
+                  <br/>
+                    <Input type="select" id="drink" name="drink_id" onChange={this.handleInputChange} required>
+                      <option value='' >Choose Drink</option>
+                      {this.menuChoicesFilterAndMapper('drink')}
+                    </Input>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <label htmlFor="other">Add Other Crave</label>
+                  <br/>
+                    <Input required onChange={this.handleInputChange} name="other" id="other" value={this.state.other} placeholder="Other Crave" type="text"/>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Button type="submit" className="m-2" color="primary">
+              Begin Craving <FontAwesome name="sign-in" />
+            </Button>
+
+
+
+          </Form>
       </div>
     );
   };
