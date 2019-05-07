@@ -1,6 +1,8 @@
 
 #wrapper {
   overflow: hidden;
+  text-align: center;
+
 }
 
 #sidebar-wrapper {
@@ -21,7 +23,6 @@
   font-size: 1.1rem;
 }
 
-
 #page-content-wrapper{
   width:100%;
 }
@@ -29,22 +30,44 @@
 #navbar-with-option {
   overflow: hidden;
   top: 0;
+  display: inline-block;
+  width:100%;
+
+
 }
 
 #page-content-wrapper .container-fluid {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 52vh;
+    height: 50vh;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
+  margin-left: 0rem;
+}
+
+#menu-toggle {
+  background-color: #7394a4;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.message-window-avatar {
+  border-radius: 50px;
+  width: 30px;
 }
 
 @media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
 
+  .message-window-avatar {
+    border-radius: 50px;
+    width: 50px;
+  }
+
+
+  #sidebar-wrapper {
+    margin-left: -30;
   }
 
   #page-content-wrapper .container-fluid {
@@ -55,6 +78,6 @@
 
 
   #wrapper.toggled #sidebar-wrapper {
-    margin-left: -30rem;
+    margin-left: 0rem;
   }
 }

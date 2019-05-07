@@ -3,6 +3,7 @@ import { ActionCable } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants';
 // import NewConversationForm from './NewConversationForm';
 import MessagesArea from './MessagesArea';
+import NewMessagesForm from './NewMessagesForm';
 import Cable from './Cable';
 
 import {connect} from 'react-redux';
@@ -11,7 +12,8 @@ import FontAwesome from 'react-fontawesome';
 import { getUserConversations } from '../thunks/conversationThunks';
 import { updateConversationMessages, updateConversations } from '../actions/conversationActions';
 
-// import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import moment from 'moment';
+
 import '../simple-sidebar.css';
 import '../conversation-messages.css';
 
@@ -20,7 +22,7 @@ class ConversationsList extends React.Component {
     conversations: this.props.conversations,
     activeConversation: null,
     user:this.props.user,
-    toggled: true
+    toggled: false
   };
 
   // componentWillReceiveProps(nextProps) {
@@ -30,7 +32,18 @@ class ConversationsList extends React.Component {
   // }
 
   handleClick = id => {
-    this.setState({ activeConversation: id });
+    if(id === this.state.activeConversation){
+      this.setState({
+        activeConversation: null,
+        toggled: false
+        });
+    } else {
+      this.setState({
+        activeConversation: id,
+        toggled: true
+      });
+    }
+
   };
 
   handleReceivedConversation = response => {
@@ -66,102 +79,42 @@ class ConversationsList extends React.Component {
 
     return (
 
-      <div  className={this.state.toggled ? 'd-flex toggled' : 'd-flex' }   id="wrapper">
+      <div  className={this.state.toggled ? 'd-flex ' : 'd-flex toggled' }    id="wrapper">
+
+        <ActionCable channel={{ channel: 'ConversationsChannel' }} onReceived={this.handleReceivedConversation} />
+        {this.state.conversations.length ? (
+          <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage} />
+        ) : null}
 
         <div className="bg-light border-right" id="sidebar-wrapper">
-          <div className="sidebar-heading"><FontAwesome name='heart' />Matched</div>
+          <div className="sidebar-heading">Conversations<FontAwesome name='heart' /></div>
           <div className="list-group list-group-flush">
-            <div className="chat_list active_chat">
-              <div className="chat_people">
-                <div className="chat_img">
-                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
-              </div>
-                <div className="chat_ib">
-                  <h5>Sunil Rajput<span className="chat_date">Dec 25</span> </h5>
-                </div>
-              </div>
-            </div>
-            <div className="chat_list ">
-              <div className="chat_people">
-                <div className="chat_img">
-                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
-              </div>
-                <div className="chat_ib">
-                  <h5>Sunil Rajput<span className="chat_date">Dec 25</span> </h5>
-                </div>
-              </div>
-            </div>
+            {mapConversations(conversations, this.handleClick, this.props.user.id, this.state.activeConversation)}
           </div>
         </div>
 
        <div id="page-content-wrapper"  >
-         <nav id='navbar-with-option' className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-           <button className="btn btn-primary" onClick={this.toggle} id="menu-toggle">
-             {this.state.toggled ?
-               <FontAwesome name='comments' />
-               :
-               <FontAwesome name='inbox'  />
-             }
-            </button>
-         </nav>
 
-         <div className="container-fluid p-2 " hidden={this.state.toggled } >
-           <div className="incoming_msg">
-             <div className="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> </div>
-             <div className="received_msg">
-               <div className="received_withd_msg">
-                 <p>Test which is a new approach to have all
-                   solutions</p>
-                 <span className="time_date"> 11:01 AM    |    June 9</span></div>
-             </div>
-           </div>
-           <div className="outgoing_msg">
-             <div className="sent_msg">
-               <p>Test which is a new approach to have all
-                 solutions</p>
-               <span className="time_date"> 11:01 AM    |    June 9</span> </div>
-           </div>
+           {activeConversation && this.state.toggled ? (
+             <MessagesArea
+               conversation={findActiveConversation(
+                 conversations,
+                 activeConversation
+               )}
+               toggle={this.toggle}
+               userId={this.props.user.id}
+               toggled={this.state.toggled}
+               />
+           ) : null}
 
-
-         </div>
-
-        <div className="type_msg m-2" hidden={this.state.toggled } >
-          <div className="input_msg_write">
-            <input type="text" className="write_msg" placeholder="Type a message" />
-            <button className="msg_send_btn" type="button">
-              <FontAwesome name='paper-plane' aria-hidden="true" />
-            </button>
-          </div>
-        </div>
-
-
+           { activeConversation && this.state.toggled ?
+              <div className="type_msg m-2"  >
+                <NewMessagesForm user_id={this.props.user.id} conversation_id={activeConversation} />
+              </div>
+            :
+              null
+            }
       </div>
-{
-        /*
-      }
-    <ActionCable channel={{ channel: 'ConversationsChannel' }} onReceived={this.handleReceivedConversation} />
-    {this.state.conversations.length ? (
-      <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage} />
-    ) : null}
-      <div className="col-sm-3 bg-secondary" style={{height:'68vh', overflow:'auto'}} expand="md">
-        <h2>Conversations</h2>
-        <ul>{mapConversations(conversations, this.handleClick)}</ul>
-      </div>
-      <div className="col-sm-9 bg-primary " style={{height:'68vh'}} >
-        {activeConversation ? (
-          <MessagesArea
-            conversation={findActiveConversation(
-              conversations,
-              activeConversation
-            )}
-            userId={this.state.user.id}
-            />
-        ) : null}
-        </div>
-    */
-
-  }
-
       </div>
     );
   };
@@ -189,12 +142,29 @@ const findActiveConversation = (conversations, activeConversation) => {
   );
 };
 
-const mapConversations = (conversations, handleClick) => {
+const mapConversations = (conversations, handleClick, actualUserId, activeConversation) => {
   return conversations.map(conversation => {
+    const otherUser =  conversation.users.find(user => user.id !== actualUserId);
     return (
-      <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-        {conversation.created_at}
-      </li>
+        <div onClick={() => handleClick(conversation.id)} key={conversation.id} className={activeConversation === conversation.id? 'chat_list active_chat': 'chat_list'}>
+          <div className="chat_people">
+            <div className="chat_img">
+              <img src={otherUser.image_url} alt={otherUser.full_name} />
+          </div>
+            <div className="chat_ib">
+              <h6>{otherUser.full_name}</h6>
+              <small>
+                { conversation.messages.length > 0 ?
+                  moment(conversation.messages[conversation.messages.length -1].created_at).format('LL')
+                  :
+                  'No messages yet.'
+                }
+
+               </small>
+            </div>
+
+          </div>
+        </div>
     );
   });
 };

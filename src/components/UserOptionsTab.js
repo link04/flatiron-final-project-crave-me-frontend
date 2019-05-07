@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 
 import { Nav, NavItem, NavLink, Col } from 'reactstrap';
 import classnames from 'classnames';
+import FontAwesome from 'react-fontawesome';
 
 class UserOptionsTab  extends React.Component{
   constructor(props) {
@@ -37,6 +38,7 @@ class UserOptionsTab  extends React.Component{
               }}
             >
             Matches
+              <FontAwesome name='users'/>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -48,6 +50,7 @@ class UserOptionsTab  extends React.Component{
               }}
             >
             Conversations
+            <FontAwesome name='comments'  />
             </NavLink>
           </NavItem>
           <NavItem>
@@ -58,6 +61,7 @@ class UserOptionsTab  extends React.Component{
               }}
             >
               Craves
+                <FontAwesome name='cutlery'  />
             </NavLink>
           </NavItem>
         </Nav>

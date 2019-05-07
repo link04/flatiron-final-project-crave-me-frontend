@@ -2,8 +2,9 @@ import React from 'react';
 import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants';
 import {connect} from 'react-redux';
 import { postMessage } from '../thunks/conversationThunks';
+import FontAwesome from 'react-fontawesome';
 
-import { InputGroup, InputGroupText, InputGroupAddon, Input, Button } from 'reactstrap';
+import '../conversation-messages.css';
 
 
 class NewMessageForm extends React.Component {
@@ -36,16 +37,14 @@ class NewMessageForm extends React.Component {
 
   render = () => {
     return (
-      <form onSubmit={this.handleSubmit} style={{position: 'absolute', minWidth:'94%', bottom: '0px'}} >
-          <InputGroup>
-            <Input
-             type="text"
-             value={this.state.text}
-             onChange={this.handleChange} />
-             <InputGroupAddon addonType="append">
-               <Button style={{width:'100px', paddingRight:'20px'}}  className="">Send</Button>
-             </InputGroupAddon>
-           </InputGroup>
+      <form onSubmit={this.handleSubmit} id="new-message-form"  >
+          <div className="input_msg_write">
+            <input type="text" value={this.state.text} onChange={this.handleChange} className="write_msg"
+             placeholder="Type a message" required/>
+           <button type="submit" form="new-message-form"   className="msg_send_btn" >
+              <FontAwesome name='paper-plane' aria-hidden="true" />
+            </button>
+          </div>
       </form>
     );
   };

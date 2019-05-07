@@ -49,7 +49,7 @@ class MatchCard extends React.Component  {
 
           <div className="card mb-9" >
             <div className="row no-gutters justify-content-center">
-                <div className="col-md-3" id="crave" >
+                <div className="col-md-3" id="crave" style={{cursor:'pointer'}}  >
                   <img onClick={() => this.handleUserClick(true) } src={require('../assets/images/would-eat.png')}  className="card-img" alt="Read heart with fork and knife." />
                   <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="crave" toggle={this.toggleTooltip}>
                     Crave this User!
@@ -57,9 +57,9 @@ class MatchCard extends React.Component  {
               </div>
 
                 <div className="col-md-3">
-                  <img  onClick={this.handleUserDisplay} src={image_url}  className="card-img" alt={full_name} />
+                  <img  style={{cursor:'pointer'}}  onClick={this.handleUserDisplay} src={image_url}  className="card-img" alt={full_name} />
                 </div>
-                <div className="col-md-3" id="un-crave">
+                <div style={{cursor:'pointer'}}  className="col-md-3" id="un-crave">
                   <img onClick={() => this.handleUserClick(false) } src={require('../assets/images/would-not-eat.png')} className="card-img" alt="Black heart with fork and knife." />
                     <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="un-crave" toggle={this.toggleTooltip}>
                       Not-Crave this User!

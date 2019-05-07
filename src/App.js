@@ -35,8 +35,7 @@ class App extends React.Component {
     const token = localStorage.token;
     if(token){
       this.props.getUser(token);
-      // this.props.history.push('/matches');
-
+      this.props.history.push('/matches');
     } else if (location !== '/login' && location !== '/signup'){
       this.props.history.push('/login');
     }
@@ -49,8 +48,6 @@ class App extends React.Component {
       this.props.getUserConversations(nextProps.user.id)
     }
   }
-
-
 
   render(){
 
