@@ -53,9 +53,9 @@ class NavBar extends React.Component {
                 this.props.history.push('/login');
                 swal("Bye Bye!");
               break;
-          case null:
-            break;
-          default:
+            case null:
+              break;
+            default:
           }
         });
     }
