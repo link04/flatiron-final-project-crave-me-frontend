@@ -1,0 +1,84 @@
+
+#wrapper {
+  overflow: hidden;
+  text-align: center;
+
+}
+
+#sidebar-wrapper {
+  margin-left: -30rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 67vh;
+  width: 30rem;
+
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.1rem;
+}
+
+#page-content-wrapper{
+  width:100%;
+}
+
+#navbar-with-option {
+  overflow: hidden;
+  top: 0;
+  display: inline-block;
+  width:100%;
+
+
+}
+
+#page-content-wrapper .container-fluid {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 50vh;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0rem;
+}
+
+#menu-toggle {
+  background-color: #7394a4;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.message-window-avatar {
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+}
+
+@media (min-width: 768px) {
+
+  .message-window-avatar {
+    border-radius: 50px;
+    width: 50px;
+  }
+
+
+  #sidebar-wrapper {
+    margin-left: -30;
+  }
+
+  #page-content-wrapper .container-fluid {
+      overflow-y: auto;
+      overflow-x: hidden;
+        height: 52vh;
+  }
+
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: 0rem;
+  }
+}

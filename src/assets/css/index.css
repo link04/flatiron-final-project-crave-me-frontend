@@ -1,0 +1,160 @@
+body {
+  font-family: 'Source Serif Pro', serif;
+}
+
+
+ul#tab-options {
+  line-height: 50px;
+  padding-bottom: 40px;
+  border-bottom: 0px;
+  font-size: 15px;
+}
+
+ul#tab-options li {
+  border: 0.5px solid rgb(68, 68, 68);
+  border-radius: 10px;
+  border-bottom: 0px;
+  cursor: pointer;
+}
+
+#user-profile p {
+  border: 1px solid #212529;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+
+.modal-load {
+    display: block;
+    overflow:    hidden;
+    display:    block;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    text-align: center;
+    background: rgba( 255, 255, 255, .8 )
+                url('../svg-loading.svg')
+                50% 50%
+                no-repeat;
+
+}
+
+ div#user-profile-modal.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    text-align: center;
+    background: #dce4eb;
+
+}
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+ div#user-profile-modal.modal {
+    overflow: hidden;
+}
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+ div#user-profile-modal.modal {
+    display: block;
+}
+
+.hidden-modal {
+  display: none;
+}
+/* Tab styles */
+
+/* Will center the blocks displayed when the tabs is clicked.  */
+.tab-childs {
+
+  margin: 0vh 10vw;
+  top: 50%;
+  left: 50%;
+  border: solid;
+  border-style: solid;
+  border-width: 1px;
+  }
+
+/* Changing background color for active tabs */
+
+.nav-tabs .nav-link.active{
+  background-color: #d69293;
+  color:white;
+}
+
+ul li.nav-item  {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+ul li.nav-item a {
+  padding: 5px;
+}
+/*  Select style for size */
+.select{
+    height:100px;
+    overflow:scroll;
+}
+
+/* Images css */
+
+.low-quality-img {
+   position: whatever;
+   background-repeat: no-repeat;
+   background-position: whatever whatever;
+   /* background-image: url(dir/image.jpg); */
+   /* image.jpg is a low-resolution at 30% quality. */
+}
+
+@media screen and (min-width: 300px) {
+  img.card-img {
+    width: 100px;
+  }
+}
+
+
+.avatar {
+    max-height:80vh;
+    max-width:40vh;
+    margin: 10px;
+    border:3px solid #85a2b6;
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+}
+
+#side-nav {
+  position: fixed;
+  width: 250px;
+  height:100vh;
+  overflow-y: scroll;
+  background-color: red;
+}
+
+#content-wrapper {
+  margin: 0 0 0 250px;
+  padding: 0 30px;
+  overflow-y: scroll;
+  background-color: blue;
+}
+
+/*  Form ul styling*/
+
+.interest-genders-ul {
+  display: inline-flex;
+  text-decoration: none;
+  list-style-type: none;
+  margin-bottom:0px ;
+  padding-left: 0px;
+}
+
+.interest-genders-ul li {
+  margin:5px;
+
+}
