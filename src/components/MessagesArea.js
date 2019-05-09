@@ -76,7 +76,6 @@ const orderedMessages = (messages, actualUserId) => {
   const sortedMessages = messages.sort(
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
   );
-  console.log(actualUserId);
 
   return sortedMessages.map(message => {
     if(message.user_data.id !== actualUserId){

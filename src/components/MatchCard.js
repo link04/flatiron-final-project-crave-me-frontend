@@ -37,7 +37,6 @@ class MatchCard extends React.Component  {
       }
 
       handleUserClick = choice => {
-        debugger
         this.props.updateUserMatches(this.props.matchData.id,{user_id:this.props.userId, accepted_match: choice});
       }
 

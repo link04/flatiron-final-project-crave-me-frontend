@@ -8,9 +8,7 @@ import { updateConversationMessages, updateConversations } from '../actions/conv
 
 const Cable = (props) => {
 
-
   return (
-
     <Fragment>
       {props.conversations.map(conversation => {
         return (

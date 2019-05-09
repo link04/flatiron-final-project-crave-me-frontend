@@ -6,6 +6,8 @@ import {withRouter} from 'react-router-dom';
 import { Nav, NavItem, NavLink, Col } from 'reactstrap';
 import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
+import { getUserMatches } from '../thunks/userThunks';
+import { getUserConversations } from '../thunks/conversationThunks';
 
 class UserOptionsTab  extends React.Component{
   constructor(props) {
@@ -24,6 +26,8 @@ class UserOptionsTab  extends React.Component{
       });
     }
   }
+
+
   render() {
     return (
       <div id="tab-options" >
@@ -35,6 +39,7 @@ class UserOptionsTab  extends React.Component{
               onClick={() => {
                 this.toggle('1');
                 this.props.handleClickedLink('matches')
+                // this.props.getUserMatches(this.props.user.id)
               }}
             >
             Matches <FontAwesome name='users'/>
@@ -46,6 +51,7 @@ class UserOptionsTab  extends React.Component{
               onClick={() => {
                 this.toggle('2');
                 this.props.handleClickedLink('conversations')
+                // this.props.getUserConversations(this.props.user.id)
               }}
             >
             Conversations <FontAwesome name='comments'  />
@@ -68,4 +74,13 @@ class UserOptionsTab  extends React.Component{
   }
 }
 
-export default withRouter(connect()(UserOptionsTab));
+const mapStateToProps = state => {
+  return {user : state.userReducer.user}
+}
+
+const mapDispatchToProps = dispatch => ({
+  getUserMatches: (userId) => dispatch(getUserMatches(userId)),
+  getUserConversations: (userId) => dispatch(getUserConversations(userId)),
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserOptionsTab));

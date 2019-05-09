@@ -29,12 +29,18 @@ class CraveForm extends React.Component {
   }
 
   menuChoicesFilterAndMapper = (filterParam) => {
+
     const menuChoices = this.props.menuChoices.filter(choice => {
       return choice.category === filterParam
     })
-    return menuChoices.map(choice => {
+    const sortedChoices = menuChoices.sort(
+      (a, b) => 
+    );
+
+    return sortedChoices.map(choice => {
       return (<option key={choice.id} value={choice.id} >{choice.name}</option>)
     })
+
   }
 
   render(){

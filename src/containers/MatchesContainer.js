@@ -5,11 +5,11 @@ import { Button } from 'reactstrap';
 
 import MatchList from '../components/MatchList'
 import { getUserMatches } from '../thunks/userThunks';
+import { getUserConversations } from '../thunks/conversationThunks';
 
 class MatchesContainer extends React.Component {
 
   render(){
-
     return(
       <div className="text-center" >
         <div className="text-center" style={{maxHeight:'68vh', overflow:'auto'}} >
@@ -26,7 +26,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getUserMatches: (userId) => dispatch(getUserMatches(userId))
+  getUserMatches: (userId) => dispatch(getUserMatches(userId)),
+  getUserConversations: (userId) => dispatch(getUserConversations(userId)),
+
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MatchesContainer)) ;

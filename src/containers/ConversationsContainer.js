@@ -8,7 +8,7 @@ class ConversationsContainer extends React.Component {
     return(
       <div >
         <div style={{height:'68vh'}}>
-          <ConversationsList  />
+          <ConversationsList  conversations={this.props.conversations} />
         </div>
 
       </div>

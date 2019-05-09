@@ -23,7 +23,8 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 class App extends React.Component {
 
   state = {
-    user: this.props.user
+    user: this.props.user,
+    conversations: this.props.conversations
   }
 
   componentDidMount(){
@@ -33,6 +34,7 @@ class App extends React.Component {
 
     const location = this.props.history.location.pathname;
     const token = localStorage.token;
+
     if(token){
       this.props.getUser(token);
       // this.props.history.push('/matches');
@@ -43,15 +45,17 @@ class App extends React.Component {
     this.props.loadingManager();
   }
 
-  componentWillReceiveProps(nextProps) {
-
-      if (Object.keys(nextProps.user).length > 1) {
-        if(nextProps.user !==  this.props.user ){
-          this.props.getUserConversations(nextProps.user.id)
-        }
+  componentDidUpdate(prevProps){
+    if (Object.keys(prevProps.user).length < 1) {
+      if(prevProps.user.id !==  this.props.user.id ){
+        this.props.getUserConversations(this.props.user.id)
+        this.setState({
+          conversations: this.props.conversations
+        })
       }
-
+    }
   }
+
   //  Cleaning user object of errors before going to login or signup
   handleRedirectClick = () => {
     this.props.userLogOut();
@@ -84,7 +88,7 @@ class App extends React.Component {
                <Route
                exact
                path="/conversations"
-               render={() => <ConversationsContainer />}
+               render={() => <ConversationsContainer conversations={this.props.conversations} />}
                />
                <Route
                exact

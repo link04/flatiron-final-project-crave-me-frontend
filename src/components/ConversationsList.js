@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActionCable } from 'react-actioncable-provider';
-import { API_ROOT } from '../constants';
+import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants';
 // import NewConversationForm from './NewConversationForm';
 import MessagesArea from './MessagesArea';
 import NewMessagesForm from './NewMessagesForm';
@@ -12,46 +12,64 @@ import FontAwesome from 'react-fontawesome';
 import { getUserConversations } from '../thunks/conversationThunks';
 import { updateConversationMessages, updateConversations } from '../actions/conversationActions';
 
+import { withRouter} from 'react-router-dom';
+
+import { loadingManager } from '../actions/userActions';
+
 import moment from 'moment';
 
 import '../simple-sidebar.css';
 import '../conversation-messages.css';
 
 class ConversationsList extends React.Component {
+
   state = {
-    conversations: this.props.conversations,
+    conversations: [],
     activeConversation: null,
-    user:this.props.user,
+    user:{},
     toggled: false
   };
 
-  // componentWillReceiveProps(nextProps) {
-  //   if(nextProps.user !==  this.props.user){
-  //     this.props.getUserConversations(nextProps.user.id)
-  //   }
-  // }
+  componentDidMount(){
+    this.setState({
+        conversations: this.props.conversations,
+        user:this.props.user
+    })
+  }
+
+  componentDidUpdate(prevProps){
+
+      if(prevProps.conversations.length !==  this.props.conversations.length){
+        this.setState({
+            conversations: this.props.conversations,
+            user:this.props.user
+        })
+      }
+  }
 
   handleClick = id => {
-    if(id === this.state.activeConversation){
-      this.setState({
-        activeConversation: null,
-        toggled: false
+      if(id === this.state.activeConversation){
+        this.setState({
+          activeConversation: null,
+          toggled: false
+          });
+      } else {
+        this.setState({
+          activeConversation: id,
+          toggled: true
         });
-    } else {
-      this.setState({
-        activeConversation: id,
-        toggled: true
+      }
+    };
+
+   handleReceivedConversation = () => {
+      this.props.loadingManager();
+      this.props.history.push('/');
+      this.props.getUserConversations(this.props.user.id)
+      .then(() => {
+        this.props.history.push('/conversations')
+        this.props.loadingManager();
       });
     }
-
-  };
-
-  handleReceivedConversation = response => {
-    const { conversation } = response;
-    this.setState({
-      conversations: [...this.state.conversations, conversation]
-    });
-  };
 
   handleReceivedMessage = response => {
     const { message } = response;
@@ -70,7 +88,7 @@ class ConversationsList extends React.Component {
       });
     }
 
-  render = () => {
+  render (){
 
     const conversations = this.props.conversations;
     const activeConversation = this.state.activeConversation;
@@ -80,12 +98,16 @@ class ConversationsList extends React.Component {
       <div  className={this.state.toggled ? 'd-flex ' : 'd-flex toggled' } id="wrapper">
 
         <ActionCable channel={{ channel: 'ConversationsChannel' }} onReceived={this.handleReceivedConversation} />
-        {this.state.conversations.length ? (
+        {conversations.length ? (
           <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage} />
         ) : null}
 
         <div className="bg-light border-right" id="sidebar-wrapper">
-          <div className="sidebar-heading ">Conversations <FontAwesome name='comments' /></div>
+          <div className="sidebar-heading p-2">
+            <FontAwesome onClick={this.handleReceivedConversation} name='refresh' style={{color: '#85a2b6', cursor:'pointer'}} />
+             Conversations
+            <FontAwesome name='comments' />
+         </div>
           <div className="list-group list-group-flush">
             {mapConversations(conversations, this.handleClick, this.props.user.id, this.state.activeConversation)}
           </div>
@@ -120,18 +142,21 @@ class ConversationsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userReducer.user,
-    conversations: state.conversationReducer.conversations
+    user: state.userReducer.user
+    // ,
+    // conversations: state.conversationReducer.conversations
    }
 }
 
 const mapDispatchToProps = dispatch => ({
   getUserConversations: (userId) => dispatch(getUserConversations(userId)),
   updateConversationMessages: (message) => dispatch(updateConversationMessages(message)),
-  updateConversations: (conversation) => dispatch(updateConversations(conversation))
+  updateConversations: (conversation) => dispatch(updateConversations(conversation)),
+  loadingManager: () =>  dispatch(loadingManager()),
+
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConversationsList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConversationsList));
 
 // helpers
 const findActiveConversation = (conversations, activeConversation) => {
