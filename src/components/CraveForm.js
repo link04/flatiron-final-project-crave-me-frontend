@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import { postCrave } from '../thunks/craveThunks';
-import { Row, Col, Form, FormGroup, Label, Input, InputGroupAddon, InputGroup, FormFeedback, FormText, Button} from 'reactstrap';
+import { Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
 
 import FontAwesome from 'react-fontawesome';
 
@@ -33,9 +33,9 @@ class CraveForm extends React.Component {
     const menuChoices = this.props.menuChoices.filter(choice => {
       return choice.category === filterParam
     })
-    const sortedChoices = menuChoices.sort(
-      (a, b) => 
-    );
+    const sortedChoices = menuChoices.sort(function (a, b) {
+      return (a.name).localeCompare(b.name);
+    })
 
     return sortedChoices.map(choice => {
       return (<option key={choice.id} value={choice.id} >{choice.name}</option>)
@@ -102,7 +102,7 @@ class CraveForm extends React.Component {
               </Col>
             </Row>
             <Button type="submit" className="m-2" color="primary">
-              Begin Craving <FontAwesome name="sign-in" />
+              Begin Craving <FontAwesome name="cutlery" />
             </Button>
 
 

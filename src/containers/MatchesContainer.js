@@ -7,6 +7,8 @@ import MatchList from '../components/MatchList'
 import { getUserMatches } from '../thunks/userThunks';
 import { getUserConversations } from '../thunks/conversationThunks';
 
+import FontAwesome from 'react-fontawesome';
+
 class MatchesContainer extends React.Component {
 
   render(){
@@ -15,18 +17,23 @@ class MatchesContainer extends React.Component {
         <div className="text-center" style={{maxHeight:'68vh', overflow:'auto'}} >
           <MatchList />
         </div>
-        <Button className="m-2" style={{backgroundColor: '#85a2b6'}} onClick={() => this.props.getUserMatches(this.props.user.id)}>Refresh Matches</Button>
+        <Button className="m-2" style={{backgroundColor: '#85a2b6'}} onClick={() => this.props.getUserMatches(this.props.user.id, this.props.userToken)}>
+          Refresh Matches <FontAwesome name="refresh" />
+        </Button>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return {user : state.userReducer.user}
+  return {
+    user : state.userReducer.user,
+    userToken: state.userReducer.user_token
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getUserMatches: (userId) => dispatch(getUserMatches(userId)),
+  getUserMatches: (userId, token) => dispatch(getUserMatches(userId,token)),
   getUserConversations: (userId) => dispatch(getUserConversations(userId)),
 
 })

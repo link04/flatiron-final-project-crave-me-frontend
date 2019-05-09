@@ -1,10 +1,9 @@
 import React from 'react';
-import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants';
 import {connect} from 'react-redux';
 import { postMessage } from '../thunks/conversationThunks';
 import FontAwesome from 'react-fontawesome';
 
-import '../conversation-messages.css';
+import '../assets/css/conversation-messages.css';
 
 
 class NewMessageForm extends React.Component {
@@ -27,13 +26,6 @@ class NewMessageForm extends React.Component {
     this.props.postMessage(this.state)
     this.setState({ text: '' });
   };
-
-  // <input
-  //   type="text"
-  //   value={this.state.text}
-  //   onChange={this.handleChange}
-  // />
-  // <input type="submit" />
 
   render = () => {
     return (

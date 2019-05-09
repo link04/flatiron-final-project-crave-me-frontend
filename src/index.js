@@ -3,9 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 
 import userReducer from './reducers/userReducer.js';
 import genderReducer from './reducers/genderReducer.js';
@@ -18,7 +18,7 @@ import { API_WS_ROOT } from './constants';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import './index.css';
+import './assets/css/index.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -31,13 +31,12 @@ const rootReducer = combineReducers({
   conversationReducer
 })
 
-const initialState = {};
-
 const store  = createStore(
   rootReducer,
   compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(thunk)
+    // ,
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 

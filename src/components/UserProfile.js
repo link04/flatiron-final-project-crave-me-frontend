@@ -8,7 +8,6 @@ class UserProfile extends React.Component {
 
  lomalditogender = () => {
     if (this.props.user.liked_genders){
-      console.log(this.props.user.liked_genders);
       return this.props.user.liked_genders.map(gender =>  gender.name).join(', ')
     }
   }

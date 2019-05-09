@@ -1,7 +1,8 @@
 
 const initialUserState = {
   user:{},
-  loading:false
+  loading:false,
+  user_token: ''
 };
 
 const reducer = (userState = initialUserState, action) => {
@@ -9,7 +10,7 @@ const reducer = (userState = initialUserState, action) => {
     case 'UPDATE_LOADING':
       return {...userState, loading: !userState.loading}
     case 'CREATE_USER':
-      return {...userState, user: action.payload}
+      return {...userState, user: action.payload.user, user_token: action.payload.user_token}
     case 'REMOVE_USER':
       return {...userState, user: {}}
     case 'SET_USER_CRAVE':

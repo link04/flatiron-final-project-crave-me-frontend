@@ -36,7 +36,7 @@ ul#tab-options li {
     width:      100%;
     text-align: center;
     background: rgba( 255, 255, 255, .8 )
-                url('./assets/svg-loading.svg')
+                url('../svg-loading.svg')
                 50% 50%
                 no-repeat;
 

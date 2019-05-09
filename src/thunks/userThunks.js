@@ -1,6 +1,6 @@
 import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants/index.js';
 import { createUser, updateUser, setUserMatches } from '../actions/userActions';
-import { loadConversations, updateConversations, updateConversationMessages } from '../actions/conversationActions';
+import { loadConversations } from '../actions/conversationActions';
 
 export const postUser = (user) => (dispatch) => {
   const userData = new FormData();
@@ -15,7 +15,7 @@ export const postUser = (user) => (dispatch) => {
   .then(parsedResponse => {
     if(parsedResponse.user){
       localStorage.setItem("token", parsedResponse.jwt)
-      dispatch(createUser(parsedResponse.user))
+      dispatch(createUser(parsedResponse.user, parsedResponse.jwt ))
     } else {
       dispatch(createUser({errors:parsedResponse.errors}))
     }
@@ -25,11 +25,11 @@ export const postUser = (user) => (dispatch) => {
 export const getUser = (token) => (dispatch) => {
   return fetch(API_ROOT+"profile/", {
     method: 'GET',
-    headers: ATUTHORIZED_HEADERS
+    headers: {...HEADERS, 'Authorization': token}
   })
   .then(response => response.json())
   .then(parsedResponse => {
-    dispatch(createUser(parsedResponse.user))
+    dispatch(createUser(parsedResponse.user, parsedResponse.jwt))
   })
 }
 
@@ -43,9 +43,8 @@ export const loginUser = (userCredentials) => (dispatch) => {
   .then(parsedResponse => {
     if(parsedResponse.user){
       localStorage.setItem("token", parsedResponse.jwt)
-      dispatch(createUser(parsedResponse.user))
+      dispatch(createUser(parsedResponse.user, parsedResponse.jwt))
       dispatch(loadConversations(parsedResponse.user.id))
-
     } else {
       dispatch(createUser({errors:parsedResponse.errors}))
     }
@@ -64,9 +63,9 @@ export const coordinateUser = (userCoordinates, user_id) => (dispatch) => {
   })
 }
 
-export const getUserMatches = (user_id) => (dispatch) => {
+export const getUserMatches = (user_id, token) => (dispatch) => {
   return fetch(API_ROOT+"show_matches/"+ user_id, {
-    headers: ATUTHORIZED_HEADERS
+    headers: {...HEADERS, 'Authorization': token}
   })
   .then(response => response.json())
   .then(parsedResponse => {
@@ -77,7 +76,7 @@ export const getUserMatches = (user_id) => (dispatch) => {
 export const updateUserMatches = (matchedCraveId, matchedCraveData) => (dispatch) => {
   return fetch(API_ROOT+"matched_craves/"+ matchedCraveId, {
     method: 'PATCH',
-    headers: ATUTHORIZED_HEADERS,
+    headers: {...HEADERS, 'Authorization': localStorage.token },
     body: JSON.stringify({matched_crave: matchedCraveData})
   })
   .then(response => response.json())

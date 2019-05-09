@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { removeUser } from '../actions/userActions';
 import UserOptionsTab from '../components/UserOptionsTab';
 
+import FontAwesome from 'react-fontawesome';
+import swal from 'sweetalert';
+
 import { withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -35,13 +38,27 @@ class NavBar extends React.Component {
     }
 
     handleClickLogout = () =>{
-      if (window.confirm("Are you sure?")) {
-        delete localStorage.token;
-        this.props.userLogOut();
-        this.props.history.push('/login');
-      }
-    }
 
+      swal("Are you sure?", {
+          buttons: {
+            cancel: "No",
+            confirm: "Sure"
+          },
+        })
+        .then((value) => {
+          switch (value) {
+            case true:
+                delete localStorage.token;
+                this.props.userLogOut();
+                this.props.history.push('/login');
+                swal("Bye Bye!");
+              break;
+          case null:
+            break;
+          default:
+          }
+        });
+    }
 
     handleClickedLink = (location) => {
       if(location === '/login' || location === '/signup'){
@@ -66,18 +83,18 @@ class NavBar extends React.Component {
                 <>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle className="link" nav caret>
-                    {this.props.user.full_name}
+                    {this.props.user.full_name} <FontAwesome name="address-book-o" />
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem  className="link"  >
                     <NavLink onClick={() => this.handleClickedLink('/userprofile')} >
-                        Profile
+                      Profile  <FontAwesome name="user" />
                     </NavLink>
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem style={{backgroundColor: '#a00d1e', color:'white'}}  >
                       <NavItem onClick={this.handleClickLogout}>
-                        Log Out
+                        Log Out <FontAwesome name="sign-out" />
                       </NavItem>
                     </DropdownItem>
                   </DropdownMenu>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../conversation-messages.css';
+import '../assets/css/conversation-messages.css';
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 
@@ -102,6 +102,9 @@ const orderedMessages = (messages, actualUserId) => {
           </div>
         </div>
       )
+    } else {
+      // check
+      return null
     }
   });
 };

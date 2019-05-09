@@ -1,5 +1,5 @@
-import { API_ROOT, HEADERS, ATUTHORIZED_HEADERS } from '../constants/index.js';
-import { loadConversations, updateConversations, updateConversationMessages } from '../actions/conversationActions';
+import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants/index.js';
+import { loadConversations } from '../actions/conversationActions';
 
 export const getUserConversations = (userId) => (dispatch) => {
   return fetch(API_ROOT+"conversations/"+ userId, {

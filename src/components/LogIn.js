@@ -5,7 +5,7 @@ import {withRouter, Link, Redirect} from 'react-router-dom';
 import { loginUser } from '../thunks/userThunks';
 import { loadingManager, removeUser } from '../actions/userActions';
 
-import { Row, Col, Form, FormGroup, Label, Input, FormFeedback, FormText, Button} from 'reactstrap';
+import { Row, Col, Form, FormGroup, Input, FormFeedback, Button} from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 
 class LogIn extends React.Component {

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { ActionCable } from 'react-actioncable-provider';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 import {connect} from 'react-redux';
 
 import { getUserConversations } from '../thunks/conversationThunks';
@@ -12,7 +12,7 @@ const Cable = (props) => {
     <Fragment>
       {props.conversations.map(conversation => {
         return (
-          <ActionCable
+          <ActionCableConsumer
             key={conversation.id}
             channel={{ channel: 'MessagesChannel', conversation: conversation.id }}
             onReceived={(resp) => props.handleReceivedMessage(resp)}

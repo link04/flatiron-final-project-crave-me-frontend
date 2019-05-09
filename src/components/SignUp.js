@@ -6,7 +6,7 @@ import { postUser, getUser } from '../thunks/userThunks';
 import { getGenders } from '../thunks/genderThunks';
 import { loadingManager } from '../actions/userActions';
 
-import { Row, Col, Form, FormGroup, Label, Input, InputGroupAddon, CustomInput, InputGroup, FormFeedback, FormText, Button} from 'reactstrap';
+import { Row, Col, Form, FormGroup, Input, CustomInput, InputGroup, FormFeedback, FormText, Button} from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 
 class SignUp extends React.Component {

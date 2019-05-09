@@ -2,7 +2,7 @@ export const loadingManager = () => ({ type: 'UPDATE_LOADING'})
 
 export const removeUser = () => ({ type: 'REMOVE_USER' })
 
-export const createUser = (user) => ({ type: 'CREATE_USER', payload: user })
+export const createUser = (user, user_token) => ({ type: 'CREATE_USER', payload: {user:user, user_token:user_token }})
 
 export const setUserCrave = (crave, matches) => ({ type: 'SET_USER_CRAVE', payload: {crave: crave, matches:matches}})
 

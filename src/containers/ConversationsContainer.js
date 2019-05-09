@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter} from 'react-router-dom';
 import ConversationsList from '../components/ConversationsList.js';
 
 class ConversationsContainer extends React.Component {

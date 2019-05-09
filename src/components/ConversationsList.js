@@ -1,7 +1,5 @@
 import React from 'react';
-import { ActionCable } from 'react-actioncable-provider';
-import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants';
-// import NewConversationForm from './NewConversationForm';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 import MessagesArea from './MessagesArea';
 import NewMessagesForm from './NewMessagesForm';
 import Cable from './Cable';
@@ -18,8 +16,8 @@ import { loadingManager } from '../actions/userActions';
 
 import moment from 'moment';
 
-import '../simple-sidebar.css';
-import '../conversation-messages.css';
+import '../assets/css/conversation-messages.css';
+import '../assets/css/simple-sidebar.css';
 
 class ConversationsList extends React.Component {
 
@@ -97,16 +95,15 @@ class ConversationsList extends React.Component {
 
       <div  className={this.state.toggled ? 'd-flex ' : 'd-flex toggled' } id="wrapper">
 
-        <ActionCable channel={{ channel: 'ConversationsChannel' }} onReceived={this.handleReceivedConversation} />
+        <ActionCableConsumer channel={{ channel: 'ConversationsChannel' }} onReceived={this.handleReceivedConversation} />
         {conversations.length ? (
           <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage} />
         ) : null}
 
         <div className="bg-light border-right" id="sidebar-wrapper">
           <div className="sidebar-heading p-2">
-            <FontAwesome onClick={this.handleReceivedConversation} name='refresh' style={{color: '#85a2b6', cursor:'pointer'}} />
-             Conversations
-            <FontAwesome name='comments' />
+            <FontAwesome className="pull-left" onClick={this.handleReceivedConversation} name='refresh' style={{color: '#85a2b6', cursor:'pointer'}} />
+             Conversations <FontAwesome name='comments' />
          </div>
           <div className="list-group list-group-flush">
             {mapConversations(conversations, this.handleClick, this.props.user.id, this.state.activeConversation)}
@@ -172,7 +169,7 @@ const mapConversations = (conversations, handleClick, actualUserId, activeConver
         <div onClick={() => handleClick(conversation.id)} key={conversation.id} className={activeConversation === conversation.id? 'chat_list active_chat': 'chat_list'}>
           <div className="chat_people">
             <div className="chat_img">
-              <img src={otherUser.image_url} alt={otherUser.full_name} />
+              <img src={otherUser.image_url} className="chat_img_avatar" alt={otherUser.full_name} />
           </div>
             <div className="chat_ib">
               <h6>{otherUser.full_name}</h6>
