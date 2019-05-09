@@ -48,6 +48,8 @@ class SignUp extends React.Component {
   }
 
   handleFileUploader = (e) => {
+    console.log(e);
+    debugger
    this.setState({image: e.target.files[0]})
  }
 
@@ -116,7 +118,7 @@ class SignUp extends React.Component {
         <legend>Welcome To CraveMe</legend>
         <h5>Sign Up</h5>
 
-        <Form onSubmit={this.handleSubmit} >
+        <Form autoComplete="off" onSubmit={this.handleSubmit} >
           { this.props.user.email ?
             <Redirect to='/'  />
              :
@@ -175,6 +177,11 @@ class SignUp extends React.Component {
           <Row form   >
             <Col sm="12" md={{ size: 8, offset: 2 }} className="text-left">
               <FormGroup >
+                {this.state.image !== null ?
+                  <label>You choose {this.state.image.name}</label>
+                  :
+                  null
+                }
                 <CustomInput onChange={this.handleFileUploader} label="Choose Profile Image" type='file' id="image" name='image' required accept="image/png, image/jpeg" />
               </FormGroup>
             </Col>

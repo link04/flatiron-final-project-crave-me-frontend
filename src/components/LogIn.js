@@ -47,7 +47,7 @@ class LogIn extends React.Component {
       <div style={{width:'70vw'}} className="mx-auto text-center p-2 m-2" >
         <legend>Welcome To CraveMe</legend>
         <h5>Log In</h5>
-        <Form onSubmit={this.handleSubmit} >
+        <Form autoComplete="off" onSubmit={this.handleSubmit} >
             { this.props.user.email ?
                <Redirect to='/'  />
                :

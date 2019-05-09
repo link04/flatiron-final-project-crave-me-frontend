@@ -48,7 +48,7 @@ class CraveForm extends React.Component {
     return(
       <div className="text-center p-4"  >
         <h5>Create Crave</h5>
-          <Form onSubmit={this.handleSubmit} >
+          <Form autoComplete="off" onSubmit={this.handleSubmit} >
             <Row form>
               <Col md={6}>
                 <FormGroup>

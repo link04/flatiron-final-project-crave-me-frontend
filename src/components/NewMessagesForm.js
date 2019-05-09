@@ -29,7 +29,7 @@ class NewMessageForm extends React.Component {
 
   render = () => {
     return (
-      <form onSubmit={this.handleSubmit} id="new-message-form"  >
+      <form autoComplete="off" onSubmit={this.handleSubmit} id="new-message-form"  >
           <div className="input_msg_write">
             <input type="text" value={this.state.text} onChange={this.handleChange} className="write_msg"
              placeholder="Type a message" required/>
