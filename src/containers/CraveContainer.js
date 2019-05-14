@@ -34,7 +34,6 @@ class CraveContainer extends React.Component {
 
 
   render(){
-
     return(
       <div  style={{maxHeight:'70vh', overflowY:'auto'}} >
         {this.props.user.last_crave === null || this.props.user.last_crave === undefined?

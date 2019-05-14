@@ -163,7 +163,13 @@ const findActiveConversation = (conversations, activeConversation) => {
 };
 
 const mapConversations = (conversations, handleClick, actualUserId, activeConversation) => {
-  return conversations.map(conversation => {
+  // debugger
+
+  const sortedConversations = conversations.sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  );
+
+  return sortedConversations.map(conversation => {
     const otherUser =  conversation.users.find(user => user.id !== actualUserId);
     return (
         <div onClick={() => handleClick(conversation.id)} key={conversation.id} className={activeConversation === conversation.id? 'chat_list active_chat': 'chat_list'}>

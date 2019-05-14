@@ -18,7 +18,7 @@ const reducer = (userState = initialUserState, action) => {
     case 'SET_USER_MATCHES':
       return {...userState, user: {...userState.user, active_matches:action.payload}}
     case 'UPDATE_USER':
-      return {...userState, user: {...userState.user, coordinates:action.payload}}
+      return {...userState, user: action.payload}
     default:
     return userState
   }

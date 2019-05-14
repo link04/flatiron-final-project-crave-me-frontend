@@ -46,6 +46,7 @@ class LogIn extends React.Component {
     return(
       <div style={{width:'70vw'}} className="mx-auto text-center p-2 m-2" >
         <legend>Welcome To CraveMe</legend>
+          <p>Match with users located wtihin 6 miles from your location based on at least two meals you botch crave</p>
         <h5>Log In</h5>
         <Form autoComplete="off" onSubmit={this.handleSubmit} >
             { this.props.user.email ?

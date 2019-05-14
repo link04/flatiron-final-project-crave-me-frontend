@@ -48,8 +48,6 @@ class SignUp extends React.Component {
   }
 
   handleFileUploader = (e) => {
-    console.log(e);
-    debugger
    this.setState({image: e.target.files[0]})
  }
 
@@ -150,7 +148,7 @@ class SignUp extends React.Component {
               <FormGroup>
                 <InputGroup>
                   <Input className="form-control" invalid={!!this.checkForErrors('Age','age')}  required onChange={this.handleChange} id="date_of_birth" name="date_of_birth" type="date"  value={this.state.date_of_birth} />
-                  <span className="input-group-text" id="inputGroupFileAddon01"><FontAwesome name="calendar" /> </span>
+                  <span className="input-group-text" ><FontAwesome name="calendar" /> </span>
                   {this.checkForErrors('','age')}
               </InputGroup>
               </FormGroup>
@@ -182,7 +180,7 @@ class SignUp extends React.Component {
                   :
                   null
                 }
-                <CustomInput onChange={this.handleFileUploader} label="Choose Profile Image" type='file' id="image" name='image' required accept="image/png, image/jpeg" />
+                <CustomInput onChange={this.handleFileUploader} label={this.state.image === null? 'Choose Profile Image' : 'Image Selected'} type='file' id="image" name='image' required accept="image/png, image/jpeg" />
               </FormGroup>
             </Col>
           </Row>

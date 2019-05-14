@@ -8,4 +8,4 @@ export const setUserCrave = (crave, matches) => ({ type: 'SET_USER_CRAVE', paylo
 
 export const setUserMatches = (matches) => ({ type: 'SET_USER_MATCHES', payload: matches })
 
-export const updateUser = (coordinates) => ({ type: 'UPDATE_USER', payload: coordinates })
+export const updateUser = (user) => ({ type: 'UPDATE_USER', payload: user })

@@ -67,7 +67,7 @@ class App extends React.Component {
 
          <NavBar />
         {
-          <div className="tab-childs" sm="8" >
+          <div className="tab-childs" >
             <Switch>
                <Route
                exact

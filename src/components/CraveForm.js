@@ -50,14 +50,7 @@ class CraveForm extends React.Component {
         <h5>Create Crave</h5>
           <Form autoComplete="off" onSubmit={this.handleSubmit} >
             <Row form>
-              <Col md={6}>
-                <FormGroup>
-
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row form>
-              <Col md={6}>
+              <Col sm="12" md={{ size: 6, offset: 3 }}>
                 <FormGroup>
                   <label htmlFor="main_course">Main Course: </label>
                   <br/>
@@ -69,7 +62,7 @@ class CraveForm extends React.Component {
               </Col>
             </Row>
             <Row form>
-              <Col md={6}>
+              <Col sm="12" md={{ size: 6, offset: 3 }}>
                 <FormGroup>
                   <label htmlFor="main_course">Dessert: </label>
                   <br/>
@@ -81,7 +74,7 @@ class CraveForm extends React.Component {
               </Col>
             </Row>
             <Row form>
-              <Col md={6}>
+              <Col sm="12" md={{ size: 6, offset: 3 }}>
                 <FormGroup>
                   <label htmlFor="drink_id">Drink: </label>
                   <br/>
@@ -93,7 +86,7 @@ class CraveForm extends React.Component {
               </Col>
             </Row>
             <Row form>
-              <Col md={6}>
+              <Col sm="12" md={{ size: 6, offset: 3 }}>
                 <FormGroup>
                   <label htmlFor="other">Add Other Crave</label>
                   <br/>

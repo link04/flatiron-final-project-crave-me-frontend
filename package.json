@@ -2,9 +2,11 @@
   "name": "flatiron-final-project-crave-me-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/link04/flatiron-final-project-crave-me-frontend", 
   "dependencies": {
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^2.0.1",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-actioncable-provider": "^2.0.0",

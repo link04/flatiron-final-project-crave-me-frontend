@@ -84,3 +84,18 @@ export const updateUserMatches = (matchedCraveId, matchedCraveData) => (dispatch
       dispatch(setUserMatches(parsedResponse.active_matches))
   })
 }
+
+export const updateUserImage = (image, user_id) => (dispatch) => {
+  const userData = new FormData();
+  Object.keys(image).forEach((key, value) => {
+   userData.append(key, image[key])
+  })
+  return fetch(API_ROOT+"users/"+ user_id, {
+    method: 'PATCH',
+    body: userData
+  })
+  .then(response => response.json())
+  .then(parsedResponse => {
+      dispatch(updateUser(parsedResponse.user))
+  })
+}
