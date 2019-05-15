@@ -1,5 +1,5 @@
 import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants/index.js';
-import { loadConversations } from '../actions/conversationActions';
+import { loadConversations, deleteConversation } from '../actions/conversationActions';
 
 export const getUserConversations = (userId) => (dispatch) => {
   return fetch(API_ROOT+"conversations/"+ userId, {
@@ -11,10 +11,33 @@ export const getUserConversations = (userId) => (dispatch) => {
   })
 }
 
-export const postMessage = (message) => () => {
+export const postMessage = (message) => (dispatch) => {
   return fetch(`${API_ROOT}/messages`, {
       method: 'POST',
       headers: ATUTHORIZED_HEADERS,
       body: JSON.stringify({message: message})
-    });
+    })
+    .then(response => {
+      if(response.status !== 200){
+        return response.json()
+      } else {
+        return true;
+      }
+    })
+    .then(parsedResponse => {
+      if(parsedResponse !== true){
+        dispatch(deleteConversation(parsedResponse))
+      }
+    })
+}
+
+export const destroyConversation = (conversationId) => (dispatch) => {
+  return fetch(API_ROOT+"/conversations/"+conversationId, {
+    method: 'DELETE',
+    headers: ATUTHORIZED_HEADERS,
+  })
+  .then(response => response.json())
+  .then(parsedResponse => {
+    dispatch(deleteConversation(parsedResponse))
+  })
 }

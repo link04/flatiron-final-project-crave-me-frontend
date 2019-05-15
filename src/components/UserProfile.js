@@ -38,7 +38,6 @@ class UserProfile extends React.Component {
  }
 
   render(){
-    console.log(this.props.user.image_url);
     return(
         <div id="user-profile" className="text-center p-4" style={{overflowY:'auto', maxHeight:'70vh' }}>
            <div >

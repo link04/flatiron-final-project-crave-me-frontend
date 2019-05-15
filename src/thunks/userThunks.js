@@ -85,12 +85,12 @@ export const updateUserMatches = (matchedCraveId, matchedCraveData) => (dispatch
   })
 }
 
-export const updateUserImage = (image, user_id) => (dispatch) => {
+export const updateUserImage = (image, userId) => (dispatch) => {
   const userData = new FormData();
   Object.keys(image).forEach((key, value) => {
    userData.append(key, image[key])
   })
-  return fetch(API_ROOT+"users/"+ user_id, {
+  return fetch(API_ROOT+"users/"+ userId, {
     method: 'PATCH',
     body: userData
   })

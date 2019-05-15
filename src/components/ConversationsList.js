@@ -7,7 +7,7 @@ import Cable from './Cable';
 import {connect} from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
-import { getUserConversations } from '../thunks/conversationThunks';
+import { getUserConversations, destroyConversation } from '../thunks/conversationThunks';
 import { updateConversationMessages, updateConversations } from '../actions/conversationActions';
 
 import { withRouter} from 'react-router-dom';
@@ -36,11 +36,11 @@ class ConversationsList extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-
       if(prevProps.conversations.length !==  this.props.conversations.length){
         this.setState({
             conversations: this.props.conversations,
-            user:this.props.user
+            user: this.props.user,
+            toggle: false
         })
       }
   }
@@ -103,7 +103,8 @@ class ConversationsList extends React.Component {
         <div className="bg-light border-right" id="sidebar-wrapper">
           <div className="sidebar-heading p-2">
             <FontAwesome className="pull-left" onClick={this.handleReceivedConversation} name='refresh' style={{color: '#85a2b6', cursor:'pointer'}} />
-             Conversations <FontAwesome name='comments' />
+             Conversations
+            <FontAwesome name='comments' />
          </div>
           <div className="list-group list-group-flush">
             {mapConversations(conversations, this.handleClick, this.props.user.id, this.state.activeConversation)}
@@ -111,7 +112,6 @@ class ConversationsList extends React.Component {
         </div>
 
        <div id="page-content-wrapper"  >
-
            {activeConversation && this.state.toggled ? (
              <MessagesArea
                conversation={findActiveConversation(
@@ -121,9 +121,10 @@ class ConversationsList extends React.Component {
                toggle={this.toggle}
                userId={this.props.user.id}
                toggled={this.state.toggled}
+               deleteConversation={this.props.deleteConversation}
+               toggle={this.toggle}
                />
            ) : null}
-
            { activeConversation && this.state.toggled ?
               <div className="type_msg m-2"  >
                 <NewMessagesForm user_id={this.props.user.id} conversation_id={activeConversation} />
@@ -150,7 +151,7 @@ const mapDispatchToProps = dispatch => ({
   updateConversationMessages: (message) => dispatch(updateConversationMessages(message)),
   updateConversations: (conversation) => dispatch(updateConversations(conversation)),
   loadingManager: () =>  dispatch(loadingManager()),
-
+  deleteConversation: (conversationId) => dispatch(destroyConversation(conversationId))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConversationsList));
@@ -163,20 +164,23 @@ const findActiveConversation = (conversations, activeConversation) => {
 };
 
 const mapConversations = (conversations, handleClick, actualUserId, activeConversation) => {
-  // debugger
 
-  const sortedConversations = conversations.sort(
-    (a, b) => new Date(b.created_at) - new Date(a.created_at)
-  );
+    let sortedConversations = [];
+
+      if(conversations.length > 0){
+        sortedConversations = conversations.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+      }
 
   return sortedConversations.map(conversation => {
-    const otherUser =  conversation.users.find(user => user.id !== actualUserId);
+    const otherUser = conversation.users.find(user => user.id !== actualUserId);
     return (
         <div onClick={() => handleClick(conversation.id)} key={conversation.id} className={activeConversation === conversation.id? 'chat_list active_chat': 'chat_list'}>
           <div className="chat_people">
             <div className="chat_img">
               <img src={otherUser.image_url} className="chat_img_avatar" alt={otherUser.full_name} />
-          </div>
+            </div>
             <div className="chat_ib">
               <h6>{otherUser.full_name}</h6>
               <small>
@@ -185,10 +189,8 @@ const mapConversations = (conversations, handleClick, actualUserId, activeConver
                   :
                   'No messages yet.'
                 }
-
                </small>
             </div>
-
           </div>
         </div>
     );
