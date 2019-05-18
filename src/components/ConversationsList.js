@@ -122,7 +122,6 @@ class ConversationsList extends React.Component {
                userId={this.props.user.id}
                toggled={this.state.toggled}
                deleteConversation={this.props.deleteConversation}
-               toggle={this.toggle}
                />
            ) : null}
            { activeConversation && this.state.toggled ?

@@ -2,7 +2,6 @@ body {
   font-family: 'Source Serif Pro', serif;
 }
 
-
 ul#tab-options {
   line-height: 50px;
   padding-bottom: 40px;
@@ -23,7 +22,6 @@ ul#tab-options li {
   border-top-right-radius: .25rem;
 }
 
-
 .modal-load {
     display: block;
     overflow:    hidden;
@@ -39,7 +37,6 @@ ul#tab-options li {
                 url('../svg-loading.svg')
                 50% 50%
                 no-repeat;
-
 }
 
  div#user-profile-modal.modal {
@@ -52,8 +49,8 @@ ul#tab-options li {
     width:      100%;
     text-align: center;
     background: #dce4eb;
-
 }
+
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
  div#user-profile-modal.modal {
@@ -117,7 +114,6 @@ ul li.nav-item a {
     width: 100px;
   }
 }
-
 
 .avatar {
     max-height:80vh;

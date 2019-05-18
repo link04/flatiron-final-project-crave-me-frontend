@@ -2,7 +2,6 @@
 #wrapper {
   overflow: hidden;
   text-align: center;
-
 }
 
 #sidebar-wrapper {
@@ -32,8 +31,6 @@
   top: 0;
   display: inline-block;
   width:100%;
-
-
 }
 
 #page-content-wrapper .container-fluid {
@@ -76,7 +73,6 @@
       overflow-x: hidden;
         height: 52vh;
   }
-
 
   #wrapper.toggled #sidebar-wrapper {
     margin-left: 0rem;
