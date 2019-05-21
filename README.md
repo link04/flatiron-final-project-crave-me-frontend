@@ -1,6 +1,8 @@
-# CraveMe
+# CraveMe - Frontend
 
 CraveMe is a dating web app that gives the users the opportunity to match with other users based on at least two craves out of four crave daily options they may have in common with other users. Then the user will get the option of choosing if the liked the other user and would like to start a conversation with them, it will also provides the idea of what to do for their first date... eat whatever they are craving and matched for.
+
+Backend for thsi porject is located at https://github.com/link04/flatiron-final-project-crave-me-backend
 
 ## Getting Started
 
@@ -14,15 +16,11 @@ After cloning this project and going into the directory of the project run
 
 ```
 $ npm install
-
 ```
 then you will be able to run
 ```
 $ npm start
-
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ![](after-installation.gif)
 
