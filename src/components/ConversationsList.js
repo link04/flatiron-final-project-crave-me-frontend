@@ -29,6 +29,9 @@ class ConversationsList extends React.Component {
   };
 
   componentDidMount(){
+    if(this.props.user.id){
+       this.props.getUserConversations(this.props.user.id);
+     }
     this.setState({
         conversations: this.props.conversations,
         user:this.props.user

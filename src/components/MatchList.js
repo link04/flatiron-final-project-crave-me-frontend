@@ -21,14 +21,10 @@ const MatchList = (props) => {
         }
       }
 
-
     return(
       <div className="text-center p-4" >
         { userMatches(props).length > 0 ?
           <>
-          {
-            // <h4>Actual Matches</h4>
-          }
             {props.userMatches !== undefined ? userMatches(props) : null}
           </>
           :

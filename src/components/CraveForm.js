@@ -36,7 +36,6 @@ class CraveForm extends React.Component {
     const sortedChoices = menuChoices.sort(function (a, b) {
       return (a.name).localeCompare(b.name);
     })
-
     return sortedChoices.map(choice => {
       return (<option key={choice.id} value={choice.id} >{choice.name}</option>)
     })

@@ -11,7 +11,20 @@ import FontAwesome from 'react-fontawesome';
 
 class MatchesContainer extends React.Component {
 
+  componentDidMount(){
+    if(this.props.user.id){
+        this.props.getUserMatches(this.props.user.id, this.props.userToken);
+      }
+    }
+
+  componentDidUpdate(prevProps){
+    if(!prevProps.user.id){
+      this.props.getUserMatches(this.props.user.id, this.props.userToken);
+    }
+  }
+
   render(){
+
     return(
       <div className="text-center" >
         <div className="text-center" style={{maxHeight:'68vh', overflow:'auto'}} >
