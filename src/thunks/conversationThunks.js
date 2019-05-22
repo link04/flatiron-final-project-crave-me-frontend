@@ -1,4 +1,4 @@
-import { API_ROOT, ATUTHORIZED_HEADERS } from '../constants/index.js';
+import { API_ROOT, ATUTHORIZED_HEADERS, HEADERS } from '../constants/index.js';
 import { loadConversations, deleteConversation } from '../actions/conversationActions';
 
 export const getUserConversations = (userId) => (dispatch) => {
@@ -31,10 +31,10 @@ export const postMessage = (message) => (dispatch) => {
     })
 }
 
-export const destroyConversation = (conversationId) => (dispatch) => {
+export const destroyConversation = (conversationId, userToken) => (dispatch) => {
   return fetch(API_ROOT+"/conversations/"+conversationId, {
     method: 'DELETE',
-    headers: ATUTHORIZED_HEADERS,
+    headers: {...HEADERS, 'Authorization': userToken},
   })
   .then(response => response.json())
   .then(parsedResponse => {

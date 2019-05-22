@@ -44,7 +44,7 @@ class MessagesArea extends React.Component {
           switch (value) {
             case true:
             this.props.history.push('/');
-                this.props.deleteConversation(this.props.conversation.id)
+                this.props.deleteConversation(this.props.conversation.id, this.props.userInfo.userToken )
                 .then(() => {
                   this.props.history.push('/conversations')
                 });
@@ -59,7 +59,7 @@ class MessagesArea extends React.Component {
   render(){
     let conversationDifferentUser = {};
     if(!!this.props.conversation){
-      conversationDifferentUser = this.props.conversation.users.find(user => user.id !== this.props.userId);
+      conversationDifferentUser = this.props.conversation.users.find(user => user.id !== this.props.userInfo.userId);
     }
 
   return (
@@ -67,7 +67,6 @@ class MessagesArea extends React.Component {
       {!!this.props.conversation ?
         <>
           <nav id='navbar-with-option' className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-
             <button className="pull-left btn btn-primary rounded-circle " onClick={this.props.toggle}  >
               {this.props.toggled ?
                 <FontAwesome name='arrow-circle-left' />
@@ -89,7 +88,7 @@ class MessagesArea extends React.Component {
               <h5>Common Craves:</h5>
               <p>{this.props.conversation.match.matched_menu_choices.join(' - ')}</p>
             </div>
-            {orderedMessages(this.props.conversation.messages, this.props.userId)}
+            {orderedMessages(this.props.conversation.messages, this.props.userInfo.userId)}
             <div className="">
              <button onClick={this.handleClickUp} type="button" form="new-message-form"  className="btn btn-secondary" style={{bottom:'0', float:'right'}} >
                 <FontAwesome name='angle-double-up' aria-hidden="true" />

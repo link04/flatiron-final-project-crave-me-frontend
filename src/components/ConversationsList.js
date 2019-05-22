@@ -122,13 +122,13 @@ class ConversationsList extends React.Component {
                  activeConversation
                )}
                toggle={this.toggle}
-               userId={this.props.user.id}
+               userInfo={{userId: this.props.user.id, userToken: this.props.userToken}}
                toggled={this.state.toggled}
                deleteConversation={this.props.deleteConversation}
                />
            ) : null}
            { activeConversation && this.state.toggled ?
-              <div className="type_msg m-2"  >
+              <div className="type_msg m-2" >
                 <NewMessagesForm user_id={this.props.user.id} conversation_id={activeConversation} />
               </div>
             :
@@ -142,9 +142,8 @@ class ConversationsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userReducer.user
-    // ,
-    // conversations: state.conversationReducer.conversations
+    user: state.userReducer.user,
+    userToken: state.userReducer.user_token
    }
 }
 
@@ -153,7 +152,7 @@ const mapDispatchToProps = dispatch => ({
   updateConversationMessages: (message) => dispatch(updateConversationMessages(message)),
   updateConversations: (conversation) => dispatch(updateConversations(conversation)),
   loadingManager: () =>  dispatch(loadingManager()),
-  deleteConversation: (conversationId) => dispatch(destroyConversation(conversationId))
+  deleteConversation: (conversationId, userToken) => dispatch(destroyConversation(conversationId, userToken))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConversationsList));
