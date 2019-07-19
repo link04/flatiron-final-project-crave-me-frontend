@@ -4,6 +4,8 @@ CraveMe is a dating web app that gives the users the opportunity to match with o
 
 Backend API for this project is located at https://github.com/link04/flatiron-final-project-crave-me-backend
 
+Project Video Demo: https://www.youtube.com/watch?v=MoIOj23qayU
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
