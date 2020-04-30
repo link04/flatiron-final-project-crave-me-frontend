@@ -12,7 +12,7 @@
     "dotenv-expand": "^5.1.0",
     "font-awesome": "^4.7.0",
     "gh-pages": "^2.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-actioncable-provider": "^2.0.0",
